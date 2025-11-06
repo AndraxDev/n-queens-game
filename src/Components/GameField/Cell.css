@@ -1,0 +1,91 @@
+.cell {
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    flex: 0 0 auto;
+    background-color: transparent;
+}
+
+.cell::before {
+    content: "";
+    position: absolute;
+    width: calc(var(--cell-size) - 2px);
+    height: calc(var(--cell-size) - 2px);
+    transform: translateX(-50%);
+    border-radius: 6px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.cell-even::before {
+    background-color: var(--cell-color);
+    opacity: 0.8;
+}
+
+.cell-odd::before {
+    background-color: var(--cell-color);
+    opacity: 0.6;
+}
+
+.cell-top-left-corner::before {
+    border-top-left-radius: 24px;
+}
+.cell-top-right-corner::before {
+    border-top-right-radius: 24px;
+}
+.cell-bottom-left-corner::before {
+    border-bottom-left-radius: 24px;
+}
+.cell-bottom-right-corner::before {
+    border-bottom-right-radius: 24px;
+}
+
+.cell-top-left-corner::after {
+    border-top-left-radius: 24px !important;
+}
+.cell-top-right-corner::after {
+    border-top-right-radius: 24px !important;
+}
+.cell-bottom-left-corner::after {
+    border-bottom-left-radius: 24px !important;
+}
+.cell-bottom-right-corner::after {
+    border-bottom-right-radius: 24px !important;
+}
+
+.cell-content {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    font-size: calc(var(--cell-size) / 3);
+}
+
+.cell-content-error::after {
+    content: "";
+    position: absolute;
+    width: calc(var(--cell-size) - 12px);
+    height: calc(var(--cell-size) - 12px);
+    transform: translateY(-1px);
+    border-radius: 6px;
+    z-index: 0;
+    border: 5px solid #ff5353;
+    background-image: repeating-linear-gradient(
+        -45deg,
+        #ff5353,
+        #ff5353 2px,
+        transparent 2px,
+        transparent 12px
+    );
+}
+
+.cell-crown {
+
+}
+
+.cell-cross {
+    opacity: 0.3;
+}

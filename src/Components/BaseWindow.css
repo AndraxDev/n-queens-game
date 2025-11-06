@@ -1,0 +1,16 @@
+.BaseWindow-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.BaseWindow-container {
+    width: calc(100vw - 64px);
+    max-width: 480px;
+    height: 100vh;
+    display: flex;
+    margin: 0 32px;
+    flex-direction: column;
+    align-items: center;
+}
