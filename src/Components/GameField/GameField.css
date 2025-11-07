@@ -27,3 +27,59 @@
     align-items: center;
     margin: 24px;
 }
+
+.Game-Actions {
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 16px;
+    width: 100%;
+    padding-bottom: 32px !important;
+}
+
+.Game-Actions-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.Game-Header {
+    position: absolute;
+}
+
+.Game-Actions-btn {
+    padding: 16px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #212121;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    transition: .5s;
+    color: white;
+}
+
+.Game-Actions-btn:hover {
+    background-color: #ffffff;
+    cursor: pointer;
+    color: black;
+}
+
+.Game-Settings-Pane-Overlay {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin: 24px 0;
+}
+
+.Game-Settings-btn {
+    padding: 16px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background-color: #212121;
+}

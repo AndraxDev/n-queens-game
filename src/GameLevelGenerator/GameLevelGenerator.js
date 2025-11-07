@@ -16,8 +16,9 @@ const generateCrowns = (fieldWidthHeight) => {
     let seeds = generateRandomSeedsGrid(fieldWidthHeight);
 
     let a = copy2dArray(seeds);
-    console.log("Correct crowns placement:");
-    console.log(a);
+    localStorage.setItem("seeds", JSON.stringify(a));
+    // console.log("Correct crowns placement:");
+    // console.log(a);
 
     return generateRegions(seeds);
 }
@@ -118,7 +119,8 @@ const generateRegions = (grid, rng = Math.random) => {
         }
         if (candidates.length === 0) return false; // should not happen due to edge definition
         const [tr, tc] = randChoice(candidates);
-        const randomProbabilityOfExpansion = Math.floor(Math.random() * 500 + ((500 / regionNumbers) * (regionId * 1.5)));
+        // To avoid patterns and make first queens easier, use increasing probability function
+        const randomProbabilityOfExpansion = Math.floor(Math.random() * 500 + ((500 / regionNumbers) * (regionId * 1.3)));
         if (randomProbabilityOfExpansion < 600) {
             grid[tr][tc] = regionId; // paint
         }

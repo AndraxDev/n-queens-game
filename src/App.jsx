@@ -4,12 +4,18 @@ import GameField from "./Components/GameField/GameField.jsx";
 import React, {useEffect} from "react";
 import {generateLevel} from "./GameLevelGenerator/GameLevelGenerator.js";
 
-const levelData = generateLevel();
+const levelData = JSON.parse(localStorage.getItem("gameState")) ?? generateLevel();
 
 function App() {
     const [gameState, setGameState] = React.useState(levelData);
     const [field, setField] = React.useState(levelData.field);
     const [gameHasWon, setGameHasWon] = React.useState(false);
+
+    useEffect(() => {
+        if (gameState) {
+            localStorage.setItem("gameState", JSON.stringify(gameState));
+        }
+    }, [gameState])
 
     const countCrownsInRegion = (region) => {
         let count = 0;
@@ -172,6 +178,26 @@ function App() {
         checkWinCondition();
     }, [field])
 
+    const putRandomQueenInEmptyCell = () => {
+        let seeds = JSON.parse(localStorage.getItem("seeds"));
+
+        if (!seeds) {
+            throw new Error("Could not find correct answers. Try clearing app data or reset a level.");
+        } else {
+            for (let x = 0; x < seeds.length; x++) {
+                for (let y = 0; y < seeds[0].length; y++) {
+                    if (seeds[x][y] >= 0 && gameState.field[x][y] !== 2) {
+                        gameState.field[x][y] = 2;
+
+                        setGameState({...gameState});
+                        setField([...gameState.field]);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
     const handleCellClick = (x, y, action) => {
         let cellValue = gameState.field[x][y];
 
@@ -190,8 +216,40 @@ function App() {
     return (
         <>
             <BaseWindow>
-                <br/><br/>
+                <div className={"Game-Settings-Pane-Overlay"}>
+                    <button className={"Game-Settings-btn"}><div style={{
+                        width: "24px",
+                        height: "24px",
+                        lineHeight: "1",
+                    }}>
+                        <img src={"/settings.svg"} alt={"Settings"}/>
+                    </div></button>
+                </div>
+                <div className={"Game-Header"}>
+                    <h1>Queens</h1>
+                </div>
                 <GameField gameState={gameState} onCellClick={handleCellClick} gameHasWon={gameHasWon} />
+                <div className={"Game-Actions"}>
+                    <div className={"Game-Actions-group"}>
+                        <button className={"Game-Actions-btn"} onClick={() => {
+                            clearBoard();
+                            setGameHasWon(false);
+                        }}>Clear board</button>
+                        <button className={"Game-Actions-btn"} onClick={() => {
+                            putRandomQueenInEmptyCell();
+                        }}>Hint</button>
+                    </div>
+                    <div className={"Game-Actions-group"}>
+                        <button className={"Game-Actions-btn"} onClick={() => {
+                            clearBoard();
+                            const newLevel = generateLevel();
+                            setGameState(newLevel);
+                            setField(newLevel.field);
+                            setGameHasWon(false);
+                        }}>New level</button>
+                        <button className={"Game-Actions-btn"}>Rules</button>
+                    </div>
+                </div>
             </BaseWindow>
         </>
     )

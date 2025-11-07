@@ -10,7 +10,9 @@ const colors = [
     "#7c2222",
     "#1b755a",
     "#786e00",
-    "#75225c",
+    "#223375",
+    "#681356",
+    "#403a3a",
 ];
 
 function GameField({gameState, onCellClick, gameHasWon}) {
