@@ -13,7 +13,7 @@ const colors = [
     "#75225c",
 ];
 
-function GameField({gameState, onCellClick}) {
+function GameField({gameState, onCellClick, gameHasWon}) {
 
     const [windowWidth, setWindowWidth] = React.useState(document.getElementById("BaseWindow")?.clientWidth ?? 0);
 
@@ -22,6 +22,19 @@ function GameField({gameState, onCellClick}) {
             setWindowWidth(document.getElementById("BaseWindow").clientWidth);
         }
     }, [document.getElementById("BaseWindow")].clientWidth)
+
+    useEffect(() => {
+        if (gameHasWon) {
+            document.getElementById("GameField-win-screen").style.backgroundColor = "rgba(18, 18, 18, 0.6)";
+            document.getElementById("GameField-win-screen").style.backdropFilter = "blur(10px)";
+            document.getElementById("GameField-win-screen-container").style.opacity = "1.0";
+
+        } else {
+            document.getElementById("GameField-win-screen").style.backgroundColor = "rgba(18, 18, 18, 0.0)";
+            document.getElementById("GameField-win-screen").style.backdropFilter = "blur(0px)";
+            document.getElementById("GameField-win-screen-container").style.opacity = "0.0";
+        }
+    }, [gameHasWon])
 
     return (
         <div className={"GameField"}>
@@ -45,6 +58,18 @@ function GameField({gameState, onCellClick}) {
                     }
                 </div>))
             }
+            <div id={"GameField-win-screen"} style={{
+                width: "calc(" + windowWidth + "px + 48px)",
+                height: "calc(" + windowWidth + "px + 48px)"
+            }} className={"GameField-win-screen"}>
+                <div style={{
+                    width: windowWidth + "px",
+                    height: windowWidth + "px",
+                }} id={"GameField-win-screen-container"} className={"GameField-win-screen-container"}>
+                    <h1>You won!</h1>
+                    <p>/* Here should be other stats like time and score ... */</p>
+                </div>
+            </div>
         </div>
     );
 }

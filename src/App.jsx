@@ -2,40 +2,14 @@ import './App.css'
 import BaseWindow from "./Components/BaseWindow.jsx";
 import GameField from "./Components/GameField/GameField.jsx";
 import React, {useEffect} from "react";
+import {generateLevel} from "./GameLevelGenerator/GameLevelGenerator.js";
 
-const ExampleGameLevel = {
-    width: 6,
-    height: 6,
-    level: [
-        [0, 0, 1, 1, 1, 2],
-        [0, 0, 0, 0, 1, 2],
-        [3, 3, 0, 0, 1, 2],
-        [3, 3, 3, 5, 5, 2],
-        [3, 3, 3, 4, 5, 5],
-        [3, 3, 3, 4, 4, 5],
-    ],
-    field: [ // 0 - empty, 1 - cross, 2 - queen
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-    ],
-    error: [ // 0 - empty, 1 - error
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-    ]
-}
+const levelData = generateLevel();
 
 function App() {
-
-    const [gameState, setGameState] = React.useState(ExampleGameLevel);
-    const [field, setField] = React.useState(ExampleGameLevel.field);
+    const [gameState, setGameState] = React.useState(levelData);
+    const [field, setField] = React.useState(levelData.field);
+    const [gameHasWon, setGameHasWon] = React.useState(false);
 
     const countCrownsInRegion = (region) => {
         let count = 0;
@@ -97,6 +71,7 @@ function App() {
             if (checkRowForMultipleCrowns(i)) {
                 for (let y = 0; y < gameState.width; y++) {
                     gameState.error[i][y] = 1;
+                    setGameHasWon(false);
                 }
             }
         }
@@ -105,6 +80,7 @@ function App() {
             if (checkColumnForMultipleCrowns(i)) {
                 for (let x = 0; x < gameState.height; x++) {
                     gameState.error[x][i] = 1;
+                    setGameHasWon(false);
                 }
             }
         }
@@ -115,6 +91,7 @@ function App() {
             for (let y = 0; y < gameState.level[0].length; y++) {
                 if (checkNeighborCellForCrowns(x, y)) {
                     gameState.error[x][y] = 1;
+                    setGameHasWon(false);
                 }
             }
         }
@@ -161,7 +138,9 @@ function App() {
 
     const checkWinCondition = () => {
         if (countCrownsInField() === gameState.field.length && !fieldHasErrors()) {
-            alert("You win!");
+            setGameHasWon(true);
+        } else {
+            setGameHasWon(false);
         }
     }
 
@@ -175,12 +154,14 @@ function App() {
 
         setGameState({...gameState});
         setField([...gameState.field]);
+        setGameHasWon(false);
     }
 
     useEffect(() => {
         for (let i = 0; i < gameState.height; i++) {
             if (countCrownsInRegion(i) > 1) {
                 markRegionAsError(i, 1);
+                setGameHasWon(false);
             } else {
                 markRegionAsError(i, 0);
             }
@@ -210,7 +191,7 @@ function App() {
         <>
             <BaseWindow>
                 <br/><br/>
-                <GameField gameState={gameState} onCellClick={handleCellClick} />
+                <GameField gameState={gameState} onCellClick={handleCellClick} gameHasWon={gameHasWon} />
             </BaseWindow>
         </>
     )

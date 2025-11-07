@@ -7,3 +7,23 @@
     z-index: 0;
     border-radius: 24px;
 }
+
+.GameField-win-screen {
+    background-color: rgba(18, 18, 18, 0.0);
+    backdrop-filter: blur(0px);
+    transform: translateX(-24px) translateY(-24px);
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.GameField-win-screen-container {
+    opacity: 0;
+    transition: .5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 24px;
+}

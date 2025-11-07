@@ -5,6 +5,18 @@
     padding: 0;
     flex: 0 0 auto;
     background-color: transparent;
+    border-radius: 7px;
+    transition: .2s;
+}
+
+@media (min-device-width: 480px) {
+    .cell:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+.cell:active {
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .cell::before {
@@ -12,10 +24,11 @@
     position: absolute;
     width: calc(var(--cell-size) - 2px);
     height: calc(var(--cell-size) - 2px);
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(1px);
     border-radius: 6px;
     z-index: -1;
     pointer-events: none;
+    transition: .2s;
 }
 
 .cell-even::before {
@@ -26,6 +39,19 @@
 .cell-odd::before {
     background-color: var(--cell-color);
     opacity: 0.6;
+}
+
+.cell-top-left-corner {
+    border-top-left-radius: 25px;
+}
+.cell-top-right-corner {
+    border-top-right-radius: 25px;
+}
+.cell-bottom-left-corner {
+    border-bottom-left-radius: 25px;
+}
+.cell-bottom-right-corner {
+    border-bottom-right-radius: 25px;
 }
 
 .cell-top-left-corner::before {
@@ -69,7 +95,6 @@
     position: absolute;
     width: calc(var(--cell-size) - 12px);
     height: calc(var(--cell-size) - 12px);
-    transform: translateY(-1px);
     border-radius: 6px;
     z-index: 0;
     border: 5px solid #ff5353;
