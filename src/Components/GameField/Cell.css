@@ -23,10 +23,10 @@
 .cell::before {
     content: "";
     position: absolute;
-    width: calc(var(--cell-size) - 0px);
-    height: calc(var(--cell-size) - 0px);
+    width: calc(var(--cell-size) - 1px);
+    height: calc(var(--cell-size) - 1px);
     transform: translateX(-50%) translateY(0px);
-    border-radius: 0px;
+    border-radius: 6px;
     z-index: -1;
     pointer-events: none;
     transition: .2s;
@@ -82,8 +82,8 @@
 }
 
 .cell-content {
-    width: var(--cell-size);
-    height: var(--cell-size);
+    width: calc(var(--cell-size) - 1px);
+    height: calc(var(--cell-size) - 1px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,11 +94,11 @@
 .cell-content-error::after {
     content: "";
     position: absolute;
-    width: calc(var(--cell-size) - 12px);
-    height: calc(var(--cell-size) - 12px);
+    width: calc(var(--cell-size) - 9px);
+    height: calc(var(--cell-size) - 9px);
     border-radius: 6px;
     z-index: 0;
-    border: 5px solid #ff5353;
+    border: 4px solid #ff5353;
     background-image: repeating-linear-gradient(
         -45deg,
         #ff5353,
