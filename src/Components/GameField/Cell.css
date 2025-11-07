@@ -109,7 +109,9 @@
 }
 
 .cell-crown {
-
+    line-height: 1;
+    width: 24px;
+    height: 24px;
 }
 
 .cell-cross {

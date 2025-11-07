@@ -36,7 +36,7 @@ function Cell({cellData, onClick, x, y}) {
                 + (x === cellData.boardSize - 1 && y === cellData.boardSize - 1 ? "cell-bottom-right-corner " : "")
             }>
                 {
-                    cellData.hasQueen ? <div className={"cell-crown"}>👑</div> : null
+                    cellData.hasQueen ? <div className={"cell-crown"}><img src={"/crown.svg"} alt={"crown"}/></div> : null
                 }
                 {
                     cellData.hasCross ? <div className={"cell-cross"}><img src={"/cross.svg"} alt={"cross"}/></div> : null
