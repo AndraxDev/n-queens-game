@@ -23,10 +23,10 @@
 .cell::before {
     content: "";
     position: absolute;
-    width: calc(var(--cell-size) - 2px);
-    height: calc(var(--cell-size) - 2px);
-    transform: translateX(-50%) translateY(1px);
-    border-radius: 6px;
+    width: calc(var(--cell-size) - 0px);
+    height: calc(var(--cell-size) - 0px);
+    transform: translateX(-50%) translateY(0px);
+    border-radius: 0px;
     z-index: -1;
     pointer-events: none;
     transition: .2s;
