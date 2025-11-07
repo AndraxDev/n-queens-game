@@ -43,7 +43,7 @@ function GameField({gameState, onCellClick, gameHasWon}) {
             {
                 gameState.level.map((array, index) => (<div style={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "row"
                 }} key={"row-" + index}>
                     {
                         gameState.level[index].map((cell, cellIndex) => (

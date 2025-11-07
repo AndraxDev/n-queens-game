@@ -10,7 +10,7 @@ function Cell({cellData, onClick, x, y}) {
         if (btn && !rcListenerBound) {
             btn.addEventListener("contextmenu", e => {
                 e.preventDefault();
-                onClick(x, y, -1);
+                // onClick(x, y, -1);
             })
             setRcListenerBound(true);
         }

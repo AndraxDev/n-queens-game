@@ -1,15 +1,19 @@
 import {generateRandomSeedsGrid} from "./SeedGenerator.js";
 
-export const generateLevel = () => {
-    const FIELD_SIZE = 8;
+const FIELD_SIZE = 8;
 
-    return {
+export const generateLevel = () => {
+    let level = {
         width: FIELD_SIZE,
         height: FIELD_SIZE,
         level: generateCrowns(FIELD_SIZE),
         field: generateZero2dArray(FIELD_SIZE, FIELD_SIZE),
         error: generateZero2dArray(FIELD_SIZE, FIELD_SIZE)
     }
+
+    localStorage.setItem("gameState", JSON.stringify(level));
+
+    return level;
 }
 
 const generateCrowns = (fieldWidthHeight) => {

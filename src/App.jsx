@@ -3,6 +3,7 @@ import BaseWindow from "./Components/BaseWindow.jsx";
 import GameField from "./Components/GameField/GameField.jsx";
 import React, {useEffect} from "react";
 import {generateLevel} from "./GameLevelGenerator/GameLevelGenerator.js";
+import OverlayWindow from "./Components/OverlayWindow.jsx";
 
 const levelData = JSON.parse(localStorage.getItem("gameState")) ?? generateLevel();
 
@@ -10,6 +11,8 @@ function App() {
     const [gameState, setGameState] = React.useState(levelData);
     const [field, setField] = React.useState(levelData.field);
     const [gameHasWon, setGameHasWon] = React.useState(false);
+    const [rulesDialogOpen, setRulesDialogOpen] = React.useState(false);
+    const [settingsDialogOpen, setSettingsDialogOpen] = React.useState(false);
 
     useEffect(() => {
         if (gameState) {
@@ -216,12 +219,35 @@ function App() {
     return (
         <>
             <BaseWindow>
+                <OverlayWindow id={"rules-dialog"} open={rulesDialogOpen} setOpen={setRulesDialogOpen} title={"How to play?"}>
+                    <div className={"guide"}>
+                        <p className={"guide-text"}>Place queens on the board so each row, column and color region contains exactly one queen.</p>
+                        <img className={"guide-img"} src={"/scenario/correct.png"} alt={"Correct answer"}/>
+                        <br/>
+                        <p className={"guide-text"}>You can make notes using crosses like where a queen cannot be placed. It does not affect gameplay.</p>
+                        <img className={"guide-img"} src={"/scenario/crosses.png"} alt={"Crosses"}/>
+                        <br/>
+                        <p className={"guide-text"}>Queens MUST NOT touch each other even diagonally.</p>
+                        <img className={"guide-img"} src={"/scenario/diagonal_touch.png"} alt={"Diagonal touch"}/>
+                        <br/>
+                        <p className={"guide-text"}>Each row and colum must not have multiple queens.</p>
+                        <img className={"guide-img"} src={"/scenario/row_column_duplicate.png"} alt={"Row/Column contains multiple queens"}/>
+                        <br/>
+                        <p className={"guide-text"}>Each color region must not have multiple queens.</p>
+                        <img className={"guide-img"} src={"/scenario/region_duplicate.png"} alt={"Color region contains multiple queens"}/>
+                    </div>
+                </OverlayWindow>
                 <div className={"Game-Settings-Pane-Overlay"}>
-                    <button className={"Game-Settings-btn"}><div style={{
+                    {/* TODO: Implement settings */}
+                    <button onClick={() => {
+                        setSettingsDialogOpen(true);
+                    }} style={{
+                        opacity: "0",
+                    }} className={"Game-Settings-btn"}><div style={{
                         width: "24px",
                         height: "24px",
                         lineHeight: "1",
-                    }}>
+                    }} disabled>
                         <img src={"/settings.svg"} alt={"Settings"}/>
                     </div></button>
                 </div>
@@ -247,7 +273,9 @@ function App() {
                             setField(newLevel.field);
                             setGameHasWon(false);
                         }}>New level</button>
-                        <button className={"Game-Actions-btn"}>Rules</button>
+                        <button onClick={() => {
+                            setRulesDialogOpen(true);
+                        }} className={"Game-Actions-btn"}>Rules</button>
                     </div>
                 </div>
             </BaseWindow>
