@@ -89,7 +89,7 @@
 .Game-Settings-Pane-Overlay {
     width: 100%;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     margin: 24px 0;
 }
