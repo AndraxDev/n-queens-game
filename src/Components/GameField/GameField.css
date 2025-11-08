@@ -140,8 +140,8 @@
     background-color: transparent;
     color: #ffffff;
     transition: 0.3s;
-    border: 0;
-    outline: 0;
+    border: none;
+    outline: none;
     padding: 16px;
     cursor: pointer;
     border-radius: 0;
