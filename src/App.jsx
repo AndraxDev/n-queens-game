@@ -2,9 +2,10 @@ import './App.css'
 import BaseWindow from "./Components/BaseWindow.jsx";
 import GameField from "./Components/GameField/GameField.jsx";
 import React, {useEffect} from "react";
-import {generateLevel} from "./GameLevelGenerator/GameLevelGenerator.js";
+import {generateLevel, getFieldSize, setFieldSize} from "./GameLevelGenerator/GameLevelGenerator.js";
 import OverlayWindow from "./Components/OverlayWindow.jsx";
 import {loadLevel} from "./Levels/LevelLoader.js";
+import { version } from "../package.json"
 
 const levelData = JSON.parse(localStorage.getItem("gameState")) ?? loadLevel();
 
@@ -14,6 +15,7 @@ function App() {
     const [gameHasWon, setGameHasWon] = React.useState(false);
     const [rulesDialogOpen, setRulesDialogOpen] = React.useState(false);
     const [settingsDialogOpen, setSettingsDialogOpen] = React.useState(false);
+    const [fSize, setFSize] = React.useState(getFieldSize());
 
     useEffect(() => {
         if (gameState) {
@@ -221,7 +223,24 @@ function App() {
         <>
             <BaseWindow>
                 <OverlayWindow id={"settings-dialog"} open={settingsDialogOpen} setOpen={setSettingsDialogOpen} title={"Settings"}>
-
+                    <div className={"settings-block"}>
+                        <h2>Level size</h2>
+                        <div className={"level-size-btn-container"}>
+                            {
+                                [5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
+                                    <button key={"field-btn-" + i} className={"btn-level-size " + (fSize === i ? "btn-level-size-active" : "")} onClick={() => {
+                                        setFSize(i);
+                                        setFieldSize(i);
+                                    }}>{i}</button>
+                                ))
+                            }
+                        </div>
+                        <br/>
+                        <p className={"guide-text"}>Settings are saved automatically. This setting applies to your next level. Finish your current level or click "New level" to change board size.</p>
+                    </div>
+                    <div className={"guide"}>
+                        <span className={"guide-text"}>Queens version {version} developed by <a target={"_blank"} rel={"noreferrer"} href={"https://andrax.dev"} className={"link-dev"}>AndraxDev</a>. Inspired from popular LinkedIn puzzle.</span>
+                    </div>
                 </OverlayWindow>
                 <OverlayWindow id={"rules-dialog"} open={rulesDialogOpen} setOpen={setRulesDialogOpen} title={"How to play?"}>
                     <div className={"guide"}>

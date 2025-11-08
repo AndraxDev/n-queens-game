@@ -2,13 +2,24 @@ import {generateRandomSeedsGrid} from "./SeedGenerator.js";
 
 const FIELD_SIZE = 8;
 
+export const getFieldSize = () => {
+    return localStorage.getItem("fieldSize") ? parseInt(localStorage.getItem("fieldSize")) : FIELD_SIZE;
+}
+
+export const setFieldSize = (size) => {
+    if (size < 4 || size > 12) {
+        throw new Error("Field size must be between 4 and 12");
+    }
+    localStorage.setItem("fieldSize", size);
+}
+
 export const generateLevel = () => {
     let level = {
-        width: FIELD_SIZE,
-        height: FIELD_SIZE,
-        level: generateCrowns(FIELD_SIZE),
-        field: generateZero2dArray(FIELD_SIZE, FIELD_SIZE),
-        error: generateZero2dArray(FIELD_SIZE, FIELD_SIZE)
+        width: getFieldSize(),
+        height: getFieldSize(),
+        level: generateCrowns(getFieldSize()),
+        field: generateZero2dArray(getFieldSize(), getFieldSize()),
+        error: generateZero2dArray(getFieldSize(), getFieldSize())
     }
 
     localStorage.setItem("gameState", JSON.stringify(level));

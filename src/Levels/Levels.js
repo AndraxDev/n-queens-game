@@ -1,5 +1,53 @@
 import { generateZero2dArray } from "../GameLevelGenerator/GameLevelGenerator.js"
 
+const vercelLevel1 = {
+    size: 6,
+    colorRegions: [
+        ["D", "A", "A", "A", "A", "A"],
+        ["D", "B", "E", "E", "E", "B"],
+        ["D", "B", "C", "D", "F", "B"],
+        ["D", "B", "F", "E", "F", "B"],
+        ["D", "A", "A", "A", "F", "B"],
+        ["C", "C", "C", "C", "C", "B"],
+    ],
+    regionColors: {
+        A: null,
+        B: null,
+        C: null,
+        D: null,
+        E: null,
+        F: null,
+    },
+    isNew: true,
+};
+
+const convertLetterToNumber = (l) => {
+    return l.charCodeAt(0) - 'A'.charCodeAt(0);
+}
+
+const convertVercelArray = (a) => {
+    let b = [];
+
+    for (let i = 0; i < a.length; i++) {
+        b.push([])
+        for (let j = 0; j < a[0].length; j++) {
+            b[i].push(convertLetterToNumber(a[i][j]));
+        }
+    }
+
+    return b;
+}
+
+const convertVercelLevelToRegular = (level) => {
+    return {
+        width: level.size,
+        height: level.size,
+        level: convertVercelArray(level.colorRegions),
+        field: generateZero2dArray(8, 8),
+        error: generateZero2dArray(8, 8)
+    }
+}
+
 export const level1 = {
     width: 8,
     height: 8,
