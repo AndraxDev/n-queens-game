@@ -15,7 +15,7 @@ const colors = [
     "#403a3a",
 ];
 
-function GameField({gameState, onCellClick, gameHasWon}) {
+function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
 
     const [windowWidth, setWindowWidth] = React.useState(document.getElementById("BaseWindow")?.clientWidth ?? 0);
 
@@ -29,11 +29,13 @@ function GameField({gameState, onCellClick, gameHasWon}) {
         if (gameHasWon) {
             document.getElementById("GameField-win-screen").style.backgroundColor = "rgba(18, 18, 18, 0.6)";
             document.getElementById("GameField-win-screen").style.backdropFilter = "blur(10px)";
+            document.getElementById("GameField-win-screen").style.pointerEvents = "all";
             document.getElementById("GameField-win-screen-container").style.opacity = "1.0";
 
         } else {
             document.getElementById("GameField-win-screen").style.backgroundColor = "rgba(18, 18, 18, 0.0)";
             document.getElementById("GameField-win-screen").style.backdropFilter = "blur(0px)";
+            document.getElementById("GameField-win-screen").style.pointerEvents = "none";
             document.getElementById("GameField-win-screen-container").style.opacity = "0.0";
         }
     }, [gameHasWon])
@@ -72,7 +74,10 @@ function GameField({gameState, onCellClick, gameHasWon}) {
                     height: windowWidth + "px",
                 }} id={"GameField-win-screen-container"} className={"GameField-win-screen-container"}>
                     <h1>You won!</h1>
-                    <p>/* Here should be other stats like time and score ... */</p>
+                    {/*<p>Here should be other stats like time and score ... </p>*/}
+                    <button style={{
+                        width: "150px"
+                    }} onClick={onCloseWinScreen} className={"Game-Actions-btn"}>Close</button>
                 </div>
             </div>
         </div>

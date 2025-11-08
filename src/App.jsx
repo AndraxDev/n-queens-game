@@ -254,7 +254,9 @@ function App() {
                 <div className={"Game-Header"}>
                     <h1>Queens</h1>
                 </div>
-                <GameField gameState={gameState} onCellClick={handleCellClick} gameHasWon={gameHasWon} />
+                <GameField gameState={gameState} onCellClick={handleCellClick} gameHasWon={gameHasWon} onCloseWinScreen={() => {
+                    setGameHasWon(false);
+                }} />
                 <div className={"Game-Actions"}>
                     <div className={"Game-Actions-group"}>
                         <button className={"Game-Actions-btn"} onClick={() => {
