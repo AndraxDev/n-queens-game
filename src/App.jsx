@@ -4,8 +4,9 @@ import GameField from "./Components/GameField/GameField.jsx";
 import React, {useEffect} from "react";
 import {generateLevel} from "./GameLevelGenerator/GameLevelGenerator.js";
 import OverlayWindow from "./Components/OverlayWindow.jsx";
+import {loadLevel} from "./Levels/LevelLoader.js";
 
-const levelData = JSON.parse(localStorage.getItem("gameState")) ?? generateLevel();
+const levelData = JSON.parse(localStorage.getItem("gameState")) ?? loadLevel();
 
 function App() {
     const [gameState, setGameState] = React.useState(levelData);

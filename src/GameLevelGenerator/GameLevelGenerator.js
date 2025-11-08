@@ -27,7 +27,7 @@ const generateCrowns = (fieldWidthHeight) => {
     return generateRegions(seeds);
 }
 
-const generateZero2dArray = (width, height) => {
+export const generateZero2dArray = (width, height) => {
     let rows = [];
 
     for (let i = 0; i < height; i++) {
