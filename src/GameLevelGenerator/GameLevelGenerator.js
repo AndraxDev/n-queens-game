@@ -109,7 +109,7 @@ const generateRegions = (grid, rng = Math.random) => {
     // 1) choose an edge cell of the region
     // 2) choose one -1 neighbor (4-dir) of that edge cell
     // 3) paint it with region id
-    function expandOnce(regionId, regionNumbers) {
+    function expandOnce(regionId, regionNumbers, idMapping) {
         const edgeCells = getEdgeCells(regionId);
         if (edgeCells.length === 0) return false; // cannot expand now
 
@@ -124,12 +124,22 @@ const generateRegions = (grid, rng = Math.random) => {
         if (candidates.length === 0) return false; // should not happen due to edge definition
         const [tr, tc] = randChoice(candidates);
         // To avoid patterns and make first queens easier, use increasing probability function
-        const randomProbabilityOfExpansion = Math.floor(Math.random() * 500 + ((500 / regionNumbers) * (regionId * 1.3)));
+        const randomProbabilityOfExpansion = Math.floor(Math.random() * 500 + ((500 / regionNumbers) * (idMapping[regionId] * 1.2)));
         if (randomProbabilityOfExpansion < 600) {
             grid[tr][tc] = regionId; // paint
         }
         return true;
     }
+
+    const idMapping = [];
+
+    for (let i = 0; i < regions.length; i++) {
+        idMapping.push(i);
+    }
+
+    idMapping.sort(() => Math.random() - 0.5);
+
+    console.log(idMapping);
 
     // Main round-robin loop
     while (hasUnfilled()) {
@@ -137,7 +147,7 @@ const generateRegions = (grid, rng = Math.random) => {
         for (const regionId of regions) {
             // Expand this region at most one cell this pass
             const regionNumbers = regions.length;
-            const did = expandOnce(regionId, regionNumbers);
+            const did = expandOnce(regionId, regionNumbers, idMapping);
             if (did) progressedThisRound = true;
             // Early exit if we’re done
             if (!hasUnfilled()) break;

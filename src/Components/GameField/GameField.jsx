@@ -73,7 +73,7 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
                     width: windowWidth + "px",
                     height: windowWidth + "px",
                 }} id={"GameField-win-screen-container"} className={"GameField-win-screen-container"}>
-                    <h1>You won!</h1>
+                    <h1>Level complete!</h1>
                     {/*<p>Here should be other stats like time and score ... </p>*/}
                     <button style={{
                         width: "150px"
