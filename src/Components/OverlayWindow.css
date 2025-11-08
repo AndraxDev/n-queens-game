@@ -1,6 +1,6 @@
 .DialogOverlay-root {
     position: fixed;
-    transition: .3s;
+    transition: .6s;
     width: 100%;
     height: 100%;
     z-index: 5;
@@ -13,7 +13,7 @@
     width: 100%;
     max-width: 480px;
     opacity: 0;
-    transition: .3s;
+    transition: .6s;
 }
 
 .DialogOverlay-header {
@@ -36,11 +36,11 @@
     outline: none;
     line-height: 1;
     border-radius: 12px;
-    transition: .2s;
+    transition: .3s;
 }
 
 .DialogOverlay-btn-back:active {
-    background-color: #323232;
+    background-color: #424242;
 }
 
 @media (min-device-width: 480px) {

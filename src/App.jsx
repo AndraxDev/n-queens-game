@@ -220,6 +220,9 @@ function App() {
     return (
         <>
             <BaseWindow>
+                <OverlayWindow id={"settings-dialog"} open={settingsDialogOpen} setOpen={setSettingsDialogOpen} title={"Settings"}>
+
+                </OverlayWindow>
                 <OverlayWindow id={"rules-dialog"} open={rulesDialogOpen} setOpen={setRulesDialogOpen} title={"How to play?"}>
                     <div className={"guide"}>
                         <p className={"guide-text"}>Place queens on the board so each row, column and color region contains exactly one queen.</p>
@@ -239,11 +242,8 @@ function App() {
                     </div>
                 </OverlayWindow>
                 <div className={"Game-Settings-Pane-Overlay"}>
-                    {/* TODO: Implement settings */}
                     <button onClick={() => {
                         setSettingsDialogOpen(true);
-                    }} style={{
-                        opacity: "0",
                     }} className={"Game-Settings-btn"}><div style={{
                         width: "24px",
                         height: "24px",

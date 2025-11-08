@@ -12,16 +12,15 @@
 .GameField-win-screen {
     background-color: rgba(18, 18, 18, 0.0);
     backdrop-filter: blur(0px);
-    /*transform: translateX(-24px) translateY(-24px);*/
     position: absolute;
     z-index: 1;
     pointer-events: none;
-    transition: .5s;
+    transition: .8s;
 }
 
 .GameField-win-screen-container {
     opacity: 0;
-    transition: .5s;
+    transition: .8s;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,6 +79,11 @@
         cursor: pointer;
         color: black;
     }
+
+    .Game-Settings-btn:hover {
+        background-color: #323232;
+        cursor: pointer;
+    }
 }
 
 .Game-Settings-Pane-Overlay {
@@ -90,12 +94,17 @@
     margin: 24px 0;
 }
 
+.Game-Settings-btn:active {
+    background-color: #424242;
+}
+
 .Game-Settings-btn {
     padding: 16px;
     border: none;
     outline: none;
     border-radius: 12px;
     background-color: #212121;
+    transition: .3s;
 }
 
 .guide-img {
