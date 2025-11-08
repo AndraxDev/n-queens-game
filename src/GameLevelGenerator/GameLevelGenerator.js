@@ -139,8 +139,6 @@ const generateRegions = (grid, rng = Math.random) => {
 
     idMapping.sort(() => Math.random() - 0.5);
 
-    console.log(idMapping);
-
     // Main round-robin loop
     while (hasUnfilled()) {
         let progressedThisRound = false;
