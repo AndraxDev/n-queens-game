@@ -110,13 +110,13 @@
 
 .cell-crown {
     line-height: 1;
-    width: 24px;
-    height: 24px;
+    width: 60%;
+    height: 60%;
 }
 
 .cell-cross {
     opacity: 0.3;
     line-height: 1;
-    width: 24px;
-    height: 24px;
+    width: 60%;
+    height: 60%;
 }
