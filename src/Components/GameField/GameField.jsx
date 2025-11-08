@@ -73,8 +73,7 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
                     width: windowWidth + "px",
                     height: windowWidth + "px",
                 }} id={"GameField-win-screen-container"} className={"GameField-win-screen-container"}>
-                    <h1>Level complete!</h1>
-                    {/*<p>Here should be other stats like time and score ... </p>*/}
+                    <h1>Level completed!</h1>
                     <button style={{
                         width: "150px"
                     }} onClick={onCloseWinScreen} className={"Game-Actions-btn"}>Close</button>
