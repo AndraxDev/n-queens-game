@@ -5,7 +5,7 @@
     padding: 0;
     flex: 0 0 auto;
     background-color: transparent;
-    border-radius: 7px;
+    /*border-radius: 7px;*/
     transition: .2s;
 }
 
@@ -23,10 +23,10 @@
 .cell::before {
     content: "";
     position: absolute;
-    width: calc(var(--cell-size) - 1px);
-    height: calc(var(--cell-size) - 1px);
+    width: calc(var(--cell-size) - 0px);
+    height: calc(var(--cell-size) - 0px);
     transform: translateX(-50%) translateY(0px);
-    border-radius: 6px;
+    /*border-radius: 6px;*/
     z-index: -1;
     pointer-events: none;
     transition: .2s;
@@ -43,42 +43,42 @@
 }
 
 .cell-top-left-corner {
-    border-top-left-radius: 25px;
+    border-top-left-radius: 16px;
 }
 .cell-top-right-corner {
-    border-top-right-radius: 25px;
+    border-top-right-radius: 16px;
 }
 .cell-bottom-left-corner {
-    border-bottom-left-radius: 25px;
+    border-bottom-left-radius: 16px;
 }
 .cell-bottom-right-corner {
-    border-bottom-right-radius: 25px;
+    border-bottom-right-radius: 16px;
 }
 
 .cell-top-left-corner::before {
-    border-top-left-radius: 24px;
+    border-top-left-radius: 16px;
 }
 .cell-top-right-corner::before {
-    border-top-right-radius: 24px;
+    border-top-right-radius: 16px;
 }
 .cell-bottom-left-corner::before {
-    border-bottom-left-radius: 24px;
+    border-bottom-left-radius: 16px;
 }
 .cell-bottom-right-corner::before {
-    border-bottom-right-radius: 24px;
+    border-bottom-right-radius: 16px;
 }
 
 .cell-top-left-corner::after {
-    border-top-left-radius: 24px !important;
+    border-top-left-radius: 16px !important;
 }
 .cell-top-right-corner::after {
-    border-top-right-radius: 24px !important;
+    border-top-right-radius: 16px !important;
 }
 .cell-bottom-left-corner::after {
-    border-bottom-left-radius: 24px !important;
+    border-bottom-left-radius: 16px !important;
 }
 .cell-bottom-right-corner::after {
-    border-bottom-right-radius: 24px !important;
+    border-bottom-right-radius: 16px !important;
 }
 
 .cell-content {
@@ -94,11 +94,11 @@
 .cell-content-error::after {
     content: "";
     position: absolute;
-    width: calc(var(--cell-size) - 9px);
-    height: calc(var(--cell-size) - 9px);
-    border-radius: 6px;
+    width: calc(var(--cell-size) - 10px);
+    height: calc(var(--cell-size) - 10px);
+    /*border-radius: 6px;*/
     z-index: 0;
-    border: 4px solid #ff5353;
+    border: 6px solid #ff5353;
     background-image: repeating-linear-gradient(
         -45deg,
         #ff5353,
@@ -119,4 +119,7 @@
     line-height: 1;
     width: 60%;
     height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -42,10 +42,18 @@ function Cell({cellData, onClick, x, y}) {
                     }} src={"/crown.svg"} alt={"crown"}/></div> : null
                 }
                 {
-                    cellData.hasCross ? <div className={"cell-cross"}><img style={{
-                        width: "100%",
-                        height: "100%",
-                    }} src={"/cross.svg"} alt={"cross"}/></div> : null
+                    cellData.hasCross ? <div className={"cell-cross"}>
+                        {/*<img style={{*/}
+                        {/*    width: "100%",*/}
+                        {/*    height: "100%",*/}
+                        {/*}} src={"/cross.svg"} alt={"cross"}/>*/}
+                        <div style={{
+                            width: "70%",
+                            height: "70%",
+                            backgroundColor: "#000",
+                            borderRadius: "50%",
+                        }}></div>
+                    </div> : null
                 }
             </div>
         </button>
