@@ -1,4 +1,4 @@
-import { generateZero2dArray } from "../GameLevelGenerator/GameLevelGenerator.js"
+import { generateZero2dArray } from "../GameLogic/GameLevelGenerator.js"
 
 const vercelLevel1 = {
     size: 6,

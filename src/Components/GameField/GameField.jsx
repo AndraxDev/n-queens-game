@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import Cell from "./Cell.jsx";
 import "./GameField.css"
+import PropTypes from "prop-types";
 
 const colors = [
     "#407038",
@@ -25,6 +26,8 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
         if (document.getElementById("BaseWindow")) {
             setWindowWidth(document.getElementById("BaseWindow").clientWidth);
         }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [document.getElementById("BaseWindow")].clientWidth)
 
     useEffect(() => {
@@ -44,13 +47,21 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
 
     return (
         <div className={"GameField"} style={{
-            gap: "0px"
+            gap: "0px",
+            height: windowWidth + "px",
+            width: windowWidth + "px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
         }}>
             {
                 gameState.level.map((array, index) => (<div style={{
                     display: "flex",
                     flexDirection: "row",
-                    gap: "0px"
+                    gap: "0px",
+                    width: windowWidth + "px",
+                    height: (windowWidth / gameState.height) + "px"
                 }} key={"row-" + index}>
                     {
                         gameState.level[index].map((cell, cellIndex) => (
@@ -83,6 +94,13 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
             </div>
         </div>
     );
+}
+
+GameField.propTypes = {
+    gameState: PropTypes.object,
+    onCellClick: PropTypes.func,
+    gameHasWon: PropTypes.bool,
+    onCloseWinScreen: PropTypes.func,
 }
 
 export default GameField;

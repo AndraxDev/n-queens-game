@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import "./OverlayWindow.css"
+import PropTypes from "prop-types";
 
 function OverlayWindow({open, setOpen, id, children, title}) {
-
     useEffect(() => {
         if (open) {
             document.getElementById(id + "").style.backgroundColor = "rgba(18, 18, 18, 0.7)";
@@ -10,7 +10,6 @@ function OverlayWindow({open, setOpen, id, children, title}) {
             document.getElementById(id + "").style.pointerEvents = "auto";
             document.getElementById(id + "").style.overflowY = "auto";
             document.getElementById(id + "-container").style.opacity = "1.0";
-
         } else {
             document.getElementById(id + "").style.backgroundColor = "rgba(18, 18, 18, 0.0)";
             document.getElementById(id + "").style.backdropFilter = "blur(0px)";
@@ -18,6 +17,8 @@ function OverlayWindow({open, setOpen, id, children, title}) {
             document.getElementById(id + "").style.overflowY = "hidden";
             document.getElementById(id + "-container").style.opacity = "0.0";
         }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open])
 
     return (
@@ -46,6 +47,14 @@ function OverlayWindow({open, setOpen, id, children, title}) {
             </div>
         </div>
     );
+}
+
+OverlayWindow.propTypes = {
+    open: PropTypes.bool,
+    setOpen: PropTypes.func,
+    id: PropTypes.string,
+    children: PropTypes.node,
+    title: PropTypes.string
 }
 
 export default OverlayWindow;

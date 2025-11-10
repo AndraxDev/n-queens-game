@@ -5,8 +5,9 @@
     padding: 0;
     flex: 0 0 auto;
     background-color: transparent;
-    /*border-radius: 7px;*/
-    transition: .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (min-device-width: 480px) {
@@ -23,13 +24,11 @@
 .cell::before {
     content: "";
     position: absolute;
-    width: calc(var(--cell-size) - 0px);
-    height: calc(var(--cell-size) - 0px);
-    transform: translateX(-50%) translateY(0px);
-    /*border-radius: 6px;*/
+    width: var(--cell-size);
+    height: var(--cell-size);
     z-index: -1;
     pointer-events: none;
-    transition: .2s;
+    transition: .3s;
 }
 
 .cell-even::before {
@@ -45,12 +44,15 @@
 .cell-top-left-corner {
     border-top-left-radius: 16px;
 }
+
 .cell-top-right-corner {
     border-top-right-radius: 16px;
 }
+
 .cell-bottom-left-corner {
     border-bottom-left-radius: 16px;
 }
+
 .cell-bottom-right-corner {
     border-bottom-right-radius: 16px;
 }
@@ -58,12 +60,15 @@
 .cell-top-left-corner::before {
     border-top-left-radius: 16px;
 }
+
 .cell-top-right-corner::before {
     border-top-right-radius: 16px;
 }
+
 .cell-bottom-left-corner::before {
     border-bottom-left-radius: 16px;
 }
+
 .cell-bottom-right-corner::before {
     border-bottom-right-radius: 16px;
 }
@@ -71,19 +76,22 @@
 .cell-top-left-corner::after {
     border-top-left-radius: 15px !important;
 }
+
 .cell-top-right-corner::after {
     border-top-right-radius: 15px !important;
 }
+
 .cell-bottom-left-corner::after {
     border-bottom-left-radius: 15px !important;
 }
+
 .cell-bottom-right-corner::after {
     border-bottom-right-radius: 15px !important;
 }
 
 .cell-content {
-    width: calc(var(--cell-size) - 0px);
-    height: calc(var(--cell-size) - 0px);
+    width: var(--cell-size);
+    height: var(--cell-size);
     display: flex;
     align-items: center;
     justify-content: center;
