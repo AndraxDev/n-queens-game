@@ -44,13 +44,13 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
 
     return (
         <div className={"GameField"} style={{
-            gap: "1px"
+            gap: "0px"
         }}>
             {
                 gameState.level.map((array, index) => (<div style={{
                     display: "flex",
                     flexDirection: "row",
-                    gap: "1px"
+                    gap: "0px"
                 }} key={"row-" + index}>
                     {
                         gameState.level[index].map((cell, cellIndex) => (

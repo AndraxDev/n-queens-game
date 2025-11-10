@@ -19,8 +19,8 @@ function Cell({cellData, onClick, x, y}) {
         <button id={"btn-" + x + "-" + y} style={{
             "--cell-color": cellData.color,
             "--cell-size": cellData.width + "px",
-            width: "calc(" + cellData.width + " - 1px)",
-            height: "calc(" + cellData.height + " - 1px)",
+            width: "calc(" + cellData.width + " - 0px)",
+            height: "calc(" + cellData.height + " - 0px)",
         }} className={
             "cell " + (cellData.even ? "cell-even" : "cell-odd") + " "
             + (x === 0 && y === 0 ? "cell-top-left-corner " : "")
