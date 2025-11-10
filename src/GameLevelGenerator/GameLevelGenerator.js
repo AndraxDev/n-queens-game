@@ -7,8 +7,8 @@ export const getFieldSize = () => {
 }
 
 export const setFieldSize = (size) => {
-    if (size < 4 || size > 12) {
-        throw new Error("Field size must be between 4 and 12");
+    if (size < 5 || size > 12) {
+        throw new Error("Field size must be between 5 and 12");
     }
     localStorage.setItem("fieldSize", size);
 }
@@ -135,7 +135,7 @@ const generateRegions = (grid, rng = Math.random) => {
         if (candidates.length === 0) return false; // should not happen due to edge definition
         const [tr, tc] = randChoice(candidates);
         // To avoid patterns and make first queens easier, use increasing probability function
-        const randomProbabilityOfExpansion = Math.floor(Math.random() * 500 + ((500 / regionNumbers) * (idMapping[regionId] * 1.2)));
+        const randomProbabilityOfExpansion = Math.floor(Math.random() * 500 + ((500 / regionNumbers) * (idMapping[regionId] * 1.25)));
         if (randomProbabilityOfExpansion < 600) {
             grid[tr][tc] = regionId; // paint
         }

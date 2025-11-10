@@ -13,6 +13,8 @@ const colors = [
     "#223375",
     "#681356",
     "#403a3a",
+    "#555c28",
+    "#233f53",
 ];
 
 function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
