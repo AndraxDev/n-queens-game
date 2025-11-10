@@ -227,7 +227,7 @@ function App() {
                         <h2>Level size</h2>
                         <div className={"level-size-btn-container"}>
                             {
-                                [5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
+                                [6, 7, 8, 9, 10, 11, 12].map((i) => (
                                     <button key={"field-btn-" + i} className={"btn-level-size " + (fSize === i ? "btn-level-size-active" : "")} onClick={() => {
                                         setFSize(i);
                                         setFieldSize(i);
