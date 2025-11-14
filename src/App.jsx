@@ -18,6 +18,8 @@ import {
     countCrownsInRegion,
     fieldHasErrors
 } from "./GameLogic/GameLogic.js";
+import {generateArray} from "./util.js";
+import {isMobile} from "react-device-detect";
 
 const levelData = JSON.parse(localStorage.getItem("gameState")) ?? loadLevel();
 
@@ -161,7 +163,8 @@ function App() {
                         <h2>Level size</h2>
                         <div className={"level-size-btn-container"}>
                             {
-                                [6, 7, 8, 9, 10, 11, 12].map((i) => (
+                                // Higher board size may not be suitable for mobile devices
+                                (isMobile ? generateArray(6, 12) : generateArray(6, 24)).map((i) => (
                                     <button key={"field-btn-" + i} className={"btn-level-size " + (fSize === i ? "btn-level-size-active" : "")} onClick={() => {
                                         setFSize(i);
                                         setFieldSize(i);

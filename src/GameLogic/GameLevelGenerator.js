@@ -7,9 +7,10 @@ export const getFieldSize = () => {
 }
 
 export const setFieldSize = (size) => {
-    if (size < 6 || size > 12) {
-        throw new Error("Field size must be between 5 and 12");
+    if (size < 6) {
+        throw new Error("Field size must be greater than 6");
     }
+
     localStorage.setItem("fieldSize", size);
 }
 
