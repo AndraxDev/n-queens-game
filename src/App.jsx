@@ -1,4 +1,4 @@
-import './App.css'
+import "./App.css"
 import BaseWindow from "./Components/BaseWindow.jsx";
 import GameField from "./Components/GameField/GameField.jsx";
 import React, { useEffect } from "react";
@@ -20,6 +20,7 @@ import {
 } from "./GameLogic/GameLogic.js";
 import {generateArray} from "./util.js";
 import {isMobile} from "react-device-detect";
+import {dark, getTheme, light} from "./Theme/Theme.js";
 
 const levelData = JSON.parse(localStorage.getItem("gameState")) ?? loadLevel();
 
@@ -30,6 +31,7 @@ function App() {
     const [rulesDialogOpen, setRulesDialogOpen] = React.useState(false);
     const [settingsDialogOpen, setSettingsDialogOpen] = React.useState(false);
     const [fSize, setFSize] = React.useState(getFieldSize());
+    const [theme, setTheme] = React.useState(getTheme());
 
     useEffect(() => {
         if (gameState) {
@@ -156,9 +158,36 @@ function App() {
     }
 
     return (
-        <>
+        <div style={{
+            "--overlay-background-color": theme.overlayBackgroundColor,
+            "--btn-background-color": theme.btnBackgroundColor,
+            "--btn-foreground-color": theme.btnForegroundColor,
+            "--btn-active-background-color": theme.btnActiveBackgroundColor,
+            "--btn-active-foreground-color": theme.btnActiveForegroundColor,
+            "--btn-settings-color": theme.btnSettingsColor,
+            "--btn-settings-hover-color": theme.btnSettingsHoverColor,
+            "--btn-settings-active-color": theme.btnSettingsActiveColor,
+            "--cell-hover-color": theme.cellHoverBackgroundColor,
+            "--cell-active-color": theme.cellActiveBackgroundColor,
+            "--cell-incorrect-color": theme.cellIncorrectColor,
+            "--cell-note-color": theme.cellNoteColor,
+            "--cell-even-opacity": theme.cellEvenOpacity,
+            "--cell-odd-opacity": theme.cellOddOpacity,
+            "--settings-overlay-background-color": theme.settingsOverlayBackgroundColor,
+            "--settings-level-size-label-color": theme.settingsLevelSizeLabelColor,
+            "--settings-level-size-active-background-color": theme.settingsLevelSizeActiveBackgroundColor,
+            "--settings-level-size-active-label-color": theme.settingsLevelSizeActiveLabelColor,
+            "--settings-level-size-container-background-color": theme.settingsLevelSizeContainerBackgroundColor,
+            "--window-back-btn-background-color": theme.windowBackBtnBackgroundColor,
+            "--window-back-btn-hover-background-color": theme.windowBackBtnHoverBackgroundColor,
+            "--window-back-btn-active-background-color": theme.windowBackBtnActiveBackgroundColor,
+            "--link-dev-color": theme.linkDevColor,
+            "--link-dev-hover-color": theme.linkDevHoverColor,
+            "--root-background-color": theme.rootBackgroundColor,
+            "--root-text-color": theme.rootTextColor,
+        }} className={"app-container"}>
             <BaseWindow>
-                <OverlayWindow id={"settings-dialog"} open={settingsDialogOpen} setOpen={setSettingsDialogOpen} title={"Settings"}>
+                <OverlayWindow theme={theme} id={"settings-dialog"} open={settingsDialogOpen} setOpen={setSettingsDialogOpen} title={"Settings"}>
                     <div className={"settings-block"}>
                         <h2>Level size</h2>
                         <div className={"level-size-btn-container"}>
@@ -173,13 +202,29 @@ function App() {
                             }
                         </div>
                         <br/>
+                        <h2>Theme</h2>
+                        <div className={"level-size-btn-container"}>
+                            <button style={{
+                                width: "auto"
+                            }} className={"btn-level-size " + (theme.isDark ? "btn-level-size-active" : "")} onClick={() => {
+                                localStorage.setItem("theme", "dark");
+                                setTheme(dark)
+                            }}>Dark</button>
+                            <button style={{
+                                width: "auto"
+                            }} className={"btn-level-size " + (theme.isDark ? "" : "btn-level-size-active")} onClick={() => {
+                                localStorage.setItem("theme", "light");
+                                setTheme(light)
+                            }}>Light</button>
+                        </div>
+                        <br/>
                         <p className={"guide-text"}>Settings are saved automatically. This setting applies to your next level. Finish your current level or click "New level" to change board size.</p>
                     </div>
                     <div className={"guide"}>
                         <span className={"guide-text"}>Queens version {version} developed by <a target={"_blank"} rel={"noreferrer"} href={"https://andrax.dev"} className={"link-dev"}>AndraxDev</a>. Inspired from popular LinkedIn puzzle.</span>
                     </div>
                 </OverlayWindow>
-                <OverlayWindow id={"rules-dialog"} open={rulesDialogOpen} setOpen={setRulesDialogOpen} title={"How to play?"}>
+                <OverlayWindow theme={theme} id={"rules-dialog"} open={rulesDialogOpen} setOpen={setRulesDialogOpen} title={"How to play?"}>
                     <div className={"guide"}>
                         <p className={"guide-text"}>Place queens on the board so each row, column and color region contains exactly one queen.</p>
                         <img className={"guide-img"} src={"/scenario/correct.png"} alt={"Correct answer"}/>
@@ -211,7 +256,7 @@ function App() {
                 <div className={"Game-Header"}>
                     <h1>Queens</h1>
                 </div>
-                <GameField gameState={gameState} onCellClick={handleCellClick} gameHasWon={gameHasWon} onCloseWinScreen={() => {
+                <GameField theme={theme} gameState={gameState} onCellClick={handleCellClick} gameHasWon={gameHasWon} onCloseWinScreen={() => {
                     setGameHasWon(false);
                 }} />
                 <div className={"Game-Actions"}>
@@ -238,7 +283,7 @@ function App() {
                     </div>
                 </div>
             </BaseWindow>
-        </>
+        </div>
     )
 }
 

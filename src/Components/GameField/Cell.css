@@ -12,13 +12,13 @@
 
 @media (min-device-width: 480px) {
     .cell:hover {
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: var(--cell-hover-color);
         cursor: crosshair;
     }
 }
 
 .cell:active {
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: var(--cell-active-color);
 }
 
 .cell::before {
@@ -33,12 +33,12 @@
 
 .cell-even::before {
     background-color: var(--cell-color);
-    opacity: 0.8;
+    opacity: var(--cell-even-opacity);
 }
 
 .cell-odd::before {
     background-color: var(--cell-color);
-    opacity: 0.6;
+    opacity: var(--cell-odd-opacity);
 }
 
 .cell-top-left-corner {
@@ -105,11 +105,11 @@
     width: calc(var(--cell-size) - 14px);
     height: calc(var(--cell-size) - 14px);
     z-index: 0;
-    border: 6px solid #ff5353;
+    border: 6px solid var(--cell-incorrect-color);
     background-image: repeating-linear-gradient(
         -45deg,
-        #ff5353,
-        #ff5353 3px,
+        var(--cell-incorrect-color),
+        var(--cell-incorrect-color) 3px,
         transparent 3px,
         transparent 12px
     );
@@ -124,8 +124,10 @@
 .cell-cross {
     opacity: 0.4;
     line-height: 1;
-    width: 60%;
-    height: 60%;
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    background-color: var(--cell-note-color);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -31,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #212121;
+    background-color: var(--window-back-btn-background-color);
     border: none;
     outline: none;
     line-height: 1;
@@ -40,12 +40,12 @@
 }
 
 .DialogOverlay-btn-back:active {
-    background-color: #424242;
+    background-color: var(--window-back-btn-active-background-color);
 }
 
 @media (min-device-width: 480px) {
     .DialogOverlay-btn-back:hover {
-        background-color: #323232;
+        background-color: var(--window-back-btn-hover-background-color);
         cursor: pointer;
     }
 }

@@ -1,4 +1,4 @@
-root, body {
-    margin: 0; padding: 0;
-    user-select: none;
+.app-container {
+    background-color: var(--root-background-color);
+    color: var(--root-text-color);
 }

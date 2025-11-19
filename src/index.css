@@ -1,11 +1,17 @@
+root, body {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
 :root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
 
     color-scheme: dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #121212;
+    /*color: var(--root-text-color);*/
+    /*background-color: var(--root-background-color);*/
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;

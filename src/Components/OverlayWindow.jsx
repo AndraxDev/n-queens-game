@@ -2,16 +2,16 @@ import React, {useEffect} from 'react';
 import "./OverlayWindow.css"
 import PropTypes from "prop-types";
 
-function OverlayWindow({open, setOpen, id, children, title}) {
+function OverlayWindow({open, setOpen, id, children, title, theme}) {
     useEffect(() => {
         if (open) {
-            document.getElementById(id + "").style.backgroundColor = "rgba(18, 18, 18, 0.7)";
+            document.getElementById(id + "").style.backgroundColor = theme.overlayBackgroundColor;
             document.getElementById(id + "").style.backdropFilter = "blur(16px)";
             document.getElementById(id + "").style.pointerEvents = "auto";
             document.getElementById(id + "").style.overflowY = "auto";
             document.getElementById(id + "-container").style.opacity = "1.0";
         } else {
-            document.getElementById(id + "").style.backgroundColor = "rgba(18, 18, 18, 0.0)";
+            document.getElementById(id + "").style.backgroundColor = "transparent";
             document.getElementById(id + "").style.backdropFilter = "blur(0px)";
             document.getElementById(id + "").style.pointerEvents = "none";
             document.getElementById(id + "").style.overflowY = "hidden";
@@ -19,7 +19,7 @@ function OverlayWindow({open, setOpen, id, children, title}) {
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open])
+    }, [open, theme])
 
     return (
         <div id={id} className={"DialogOverlay-root"}>
@@ -36,7 +36,7 @@ function OverlayWindow({open, setOpen, id, children, title}) {
                             alignItems: "center",
                             justifyContent: "center",
                         }}>
-                            <img src={"/arrow_back.svg"} alt={"Go back"}/>
+                            <img src={theme.isDark ? "/arrow_back.svg" : "/arrow_back_dark.svg"} alt={"Go back"}/>
                         </div>
                     </button>
                     <h2>{title}</h2>
@@ -54,7 +54,8 @@ OverlayWindow.propTypes = {
     setOpen: PropTypes.func,
     id: PropTypes.string,
     children: PropTypes.node,
-    title: PropTypes.string
+    title: PropTypes.string,
+    theme: PropTypes.object
 }
 
 export default OverlayWindow;

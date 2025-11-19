@@ -10,7 +10,7 @@
 }
 
 .GameField-win-screen {
-    background-color: rgba(18, 18, 18, 0.0);
+    background-color: transparent;
     backdrop-filter: blur(0px);
     position: absolute;
     z-index: 2;
@@ -59,29 +59,29 @@
     padding: 16px;
     font-size: 16px;
     width: 100%;
-    background-color: #212121;
+    background-color: var(--btn-background-color);
     border: none;
     outline: none;
     border-radius: 12px;
     transition: .5s;
-    color: white;
+    color: var(--btn-foreground-color);
 }
 
 .Game-Actions-btn:active {
-    background-color: #ffffff;
+    background-color: var(--btn-active-background-color);
     cursor: pointer;
-    color: black;
+    color: var(--btn-active-foreground-color);
 }
 
 @media (min-device-width: 480px) {
     .Game-Actions-btn:hover {
-        background-color: #ffffff;
+        background-color: var(--btn-active-background-color);
         cursor: pointer;
-        color: black;
+        color: var(--btn-active-foreground-color);
     }
 
     .Game-Settings-btn:hover {
-        background-color: #323232;
+        background-color: var(--btn-settings-hover-color);
         cursor: pointer;
     }
 }
@@ -95,7 +95,7 @@
 }
 
 .Game-Settings-btn:active {
-    background-color: #424242;
+    background-color: var(--btn-settings-active-color);
 }
 
 .Game-Settings-btn {
@@ -103,7 +103,7 @@
     border: none;
     outline: none;
     border-radius: 12px;
-    background-color: #212121;
+    background-color: var(--btn-settings-color);
     transition: .3s;
 }
 
@@ -133,12 +133,11 @@
     border-radius: 12px;
     margin: 16px;
     padding: 24px;
-    background-color: rgba(41, 41, 41, 0.47);
 }
 
 .btn-level-size {
     background-color: transparent;
-    color: #ffffff;
+    color: var(--settings-level-size-label-color);
     transition: 0.3s;
     border: none;
     outline: none;
@@ -151,8 +150,8 @@
 }
 
 .btn-level-size-active {
-    background-color: #ffffff !important;
-    color: #121212 !important;
+    background-color: var(--settings-level-size-active-background-color) !important;
+    color: var(--settings-level-size-active-label-color) !important;
     border-radius: 16px;
     transition: 0.3s;
     font-weight: bold;
@@ -162,18 +161,18 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: rgba(67, 67, 67, 0.87);
+    background-color: var(--settings-level-size-container-background-color);
     border-radius: 16px;
     flex-wrap: wrap;
 }
 
 .link-dev {
     text-decoration: none;
-    color: #ff4646;
+    color: var(--link-dev-color);
     transition: 0.3s;
     font-weight: 500;
 }
 
 .link-dev:hover {
-    color: #ffaeae;
+    color: var(--link-dev-hover-color);
 }

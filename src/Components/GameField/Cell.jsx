@@ -31,12 +31,7 @@ function Cell({cellData, onClick, x, y}) {
                 }
                 {
                     cellData.hasCross ? <div className={"cell-cross"}>
-                        <div style={{
-                            width: "70%",
-                            height: "70%",
-                            backgroundColor: "#000",
-                            borderRadius: "50%",
-                        }}></div>
+                        <div/>
                     </div> : null
                 }
             </div>

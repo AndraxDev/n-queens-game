@@ -3,22 +3,7 @@ import Cell from "./Cell.jsx";
 import "./GameField.css"
 import PropTypes from "prop-types";
 
-const colors = [
-    "#407038",
-    "#754c2e",
-    "#0e5d7a",
-    "#652a78",
-    "#7c2222",
-    "#1b755a",
-    "#786e00",
-    "#223375",
-    "#681356",
-    "#403a3a",
-    "#555c28",
-    "#233f53",
-];
-
-function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
+function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme}) {
 
     const [windowWidth, setWindowWidth] = React.useState(document.getElementById("BaseWindow")?.clientWidth ?? 0);
 
@@ -32,18 +17,18 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
 
     useEffect(() => {
         if (gameHasWon) {
-            document.getElementById("GameField-win-screen").style.backgroundColor = "rgba(18, 18, 18, 0.6)";
+            document.getElementById("GameField-win-screen").style.backgroundColor = theme.overlayBackgroundColor;
             document.getElementById("GameField-win-screen").style.backdropFilter = "blur(10px)";
             document.getElementById("GameField-win-screen").style.pointerEvents = "all";
             document.getElementById("GameField-win-screen-container").style.opacity = "1.0";
 
         } else {
-            document.getElementById("GameField-win-screen").style.backgroundColor = "rgba(18, 18, 18, 0.0)";
+            document.getElementById("GameField-win-screen").style.backgroundColor = "transparent";
             document.getElementById("GameField-win-screen").style.backdropFilter = "blur(0px)";
             document.getElementById("GameField-win-screen").style.pointerEvents = "none";
             document.getElementById("GameField-win-screen-container").style.opacity = "0.0";
         }
-    }, [gameHasWon])
+    }, [gameHasWon, theme])
 
     return (
         <div className={"GameField"} style={{
@@ -68,7 +53,7 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen}) {
                             <Cell onClick={onCellClick} cellData={{
                                 width: windowWidth / gameState.width,
                                 height: windowWidth / gameState.height,
-                                color: colors[gameState.level[index][cellIndex] % colors.length],
+                                color: theme.fieldColorScheme[gameState.level[index][cellIndex] % theme.fieldColorScheme.length],
                                 even: (index + cellIndex) % 2 === 1,
                                 hasQueen: gameState.field[index][cellIndex] === 2,
                                 hasCross: gameState.field[index][cellIndex] === 1,
@@ -101,6 +86,7 @@ GameField.propTypes = {
     onCellClick: PropTypes.func,
     gameHasWon: PropTypes.bool,
     onCloseWinScreen: PropTypes.func,
+    theme: PropTypes.object
 }
 
 export default GameField;
