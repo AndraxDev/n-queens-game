@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import "./OverlayWindow.css"
 import PropTypes from "prop-types";
 
-function OverlayWindow({open, setOpen, id, children, title, theme}) {
+function OverlayWindow({open, setOpen, id, children, title, theme, statusBarWidth, navigationBarHeight}) {
     useEffect(() => {
         if (open) {
             document.getElementById(id + "").style.backgroundColor = theme.overlayBackgroundColor;
@@ -10,19 +10,23 @@ function OverlayWindow({open, setOpen, id, children, title, theme}) {
             document.getElementById(id + "").style.pointerEvents = "auto";
             document.getElementById(id + "").style.overflowY = "auto";
             document.getElementById(id + "-container").style.opacity = "1.0";
+            document.getElementsByTagName("body")[0].style.overflowY = "hidden";
         } else {
             document.getElementById(id + "").style.backgroundColor = "transparent";
             document.getElementById(id + "").style.backdropFilter = "blur(0px)";
             document.getElementById(id + "").style.pointerEvents = "none";
             document.getElementById(id + "").style.overflowY = "hidden";
             document.getElementById(id + "-container").style.opacity = "0.0";
+            document.getElementsByTagName("body")[0].style.overflowY = "auto";
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open, theme])
 
     return (
-        <div id={id} className={"DialogOverlay-root"}>
+        <div style={{
+            paddingTop: statusBarWidth + "px",
+        }} id={id} className={"DialogOverlay-root"}>
             <div id={id + "-container"} className={"DialogOverlay-container"}>
                 <div className={"DialogOverlay-header"}>
                     <button className={"DialogOverlay-btn-back"} onClick={() => {
@@ -44,6 +48,9 @@ function OverlayWindow({open, setOpen, id, children, title, theme}) {
                 <div className={"DialogOverlay-body"}>
                     {children}
                 </div>
+                <div style={{
+                    height: (2 * navigationBarHeight) + "px",
+                }} />
             </div>
         </div>
     );

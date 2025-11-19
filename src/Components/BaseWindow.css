@@ -8,8 +8,9 @@
 
 .BaseWindow-container {
     width: calc(100vw - 64px);
+    overflow-x: hidden;
     max-width: 640px;
-    height: 100vh;
+    min-height: var(--window-allowed-min-height);
     display: flex;
     margin: 0 32px;
     flex-direction: column;

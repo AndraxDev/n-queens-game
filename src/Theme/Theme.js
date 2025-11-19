@@ -1,9 +1,10 @@
 export const dark = {
+    id: "dark",
     isDark: true,
     cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
     cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
     cellIncorrectColor: "#ff6b6b",
-    cellNoteColor: "#000",
+    cellNoteColor: "rgba(0, 0, 0, 0.9)",
     cellEvenOpacity: 0.8,
     cellOddOpacity: 0.6,
     overlayBackgroundColor: "rgba(18, 18, 18, 0.6)",
@@ -43,13 +44,14 @@ export const dark = {
 }
 
 export const light = {
+    id: "light",
     isDark: false,
     cellHoverBackgroundColor: "rgba(0, 0, 0, 0.2)",
     cellActiveBackgroundColor: "rgba(0, 0, 0, 0.4)",
     cellIncorrectColor: "#ff6b6b",
-    cellNoteColor: "#000",
-    cellEvenOpacity: 0.4,
-    cellOddOpacity: 0.35,
+    cellNoteColor: "rgba(255, 255, 255, 0.4)",
+    cellEvenOpacity: 0.9,
+    cellOddOpacity: 0.8,
     overlayBackgroundColor: "rgba(255, 255, 255, 0.6)",
     btnBackgroundColor: "#d9e4d1",
     btnForegroundColor: "#313a2d",
@@ -67,7 +69,7 @@ export const light = {
     windowBackBtnActiveBackgroundColor: "#acc1a4",
     windowBackBtnHoverBackgroundColor: "#b7caaf",
     linkDevColor: "#ff4646",
-    linkDevHoverColor: "#ffaeae",
+    linkDevHoverColor: "#773434",
     rootBackgroundColor: "#ffffff",
     rootTextColor: "rgba(18, 18, 18, 0.87)",
     fieldColorScheme: [

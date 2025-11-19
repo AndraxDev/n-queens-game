@@ -1,4 +1,6 @@
 .app-container {
     background-color: var(--root-background-color);
     color: var(--root-text-color);
+    min-height: var(--window-allowed-min-height);
+    transition: 0.3s;
 }

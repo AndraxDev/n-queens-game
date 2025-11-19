@@ -35,8 +35,10 @@ function App() {
 
     // Handling inset for status bar and navigation bar on mobile devices
     const queryParams = new URLSearchParams(window.location.search);
-    const statusBarWidth = queryParams.get("sbw");
-    const navigationBarWidth = queryParams.get("nbw");
+    const sbw = queryParams.get("sbw");
+    const nbw = queryParams.get("nbw");
+    const statusBarWidth = parseInt(sbw ?? 0, 10);
+    const navigationBarWidth = parseInt(nbw ?? 0, 10);
 
     useEffect(() => {
         if (gameState) {
@@ -191,15 +193,16 @@ function App() {
             "--link-dev-hover-color": theme.linkDevHoverColor,
             "--root-background-color": theme.rootBackgroundColor,
             "--root-text-color": theme.rootTextColor,
+            "--window-allowed-min-height": "calc(100dvh - " + (statusBarWidth + navigationBarWidth) + "px)",
         }} className={"app-container"}>
             <BaseWindow>
-                <OverlayWindow theme={theme} id={"settings-dialog"} open={settingsDialogOpen} setOpen={setSettingsDialogOpen} title={"Settings"}>
+                <OverlayWindow statusBarWidth={statusBarWidth} navigationBarHeight={navigationBarWidth} theme={theme} id={"settings-dialog"} open={settingsDialogOpen} setOpen={setSettingsDialogOpen} title={"Settings"}>
                     <div className={"settings-block"}>
                         <h2>Level size</h2>
                         <div className={"level-size-btn-container"}>
                             {
                                 // Higher board size may not be suitable for mobile devices
-                                (isMobile ? generateArray(6, 12) : generateArray(6, 24)).map((i) => (
+                                (isMobile ? generateArray(6, 11) : generateArray(6, 24)).map((i) => (
                                     <button key={"field-btn-" + i} className={"btn-level-size " + (fSize === i ? "btn-level-size-active" : "")} onClick={() => {
                                         setFSize(i);
                                         setFieldSize(i);
@@ -212,13 +215,13 @@ function App() {
                         <div className={"level-size-btn-container"}>
                             <button style={{
                                 width: "auto"
-                            }} className={"btn-level-size " + (theme.isDark ? "btn-level-size-active" : "")} onClick={() => {
+                            }} className={"btn-level-size " + (theme.id === "dark" ? "btn-level-size-active" : "")} onClick={() => {
                                 localStorage.setItem("theme", "dark");
                                 setTheme(dark)
                             }}>Dark</button>
                             <button style={{
                                 width: "auto"
-                            }} className={"btn-level-size " + (theme.isDark ? "" : "btn-level-size-active")} onClick={() => {
+                            }} className={"btn-level-size " + (theme.id === "light" ? "btn-level-size-active" : "")} onClick={() => {
                                 localStorage.setItem("theme", "light");
                                 setTheme(light)
                             }}>Light</button>
@@ -230,7 +233,7 @@ function App() {
                         <span className={"guide-text"}>Queens version {version} developed by <a target={"_blank"} rel={"noreferrer"} href={"https://andrax.dev"} className={"link-dev"}>AndraxDev</a>. Inspired from popular LinkedIn puzzle.</span>
                     </div>
                 </OverlayWindow>
-                <OverlayWindow theme={theme} id={"rules-dialog"} open={rulesDialogOpen} setOpen={setRulesDialogOpen} title={"How to play?"}>
+                <OverlayWindow statusBarWidth={statusBarWidth} navigationBarHeight={navigationBarWidth} theme={theme} id={"rules-dialog"} open={rulesDialogOpen} setOpen={setRulesDialogOpen} title={"How to play?"}>
                     <div className={"guide"}>
                         <p className={"guide-text"}>Place queens on the board so each row, column and color region contains exactly one queen.</p>
                         <img className={"guide-img"} src={"/scenario/correct.png"} alt={"Correct answer"}/>

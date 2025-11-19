@@ -164,6 +164,7 @@
     background-color: var(--settings-level-size-container-background-color);
     border-radius: 16px;
     flex-wrap: wrap;
+    transition: 0.3s;
 }
 
 .link-dev {
