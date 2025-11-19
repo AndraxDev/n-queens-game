@@ -202,7 +202,7 @@ function App() {
                         <div className={"level-size-btn-container"}>
                             {
                                 // Higher board size may not be suitable for mobile devices
-                                (isMobile ? generateArray(6, 11) : generateArray(6, 24)).map((i) => (
+                                (isMobile ? generateArray(6, 12) : generateArray(6, 24)).map((i) => (
                                     <button key={"field-btn-" + i} className={"btn-level-size " + (fSize === i ? "btn-level-size-active" : "")} onClick={() => {
                                         setFSize(i);
                                         setFieldSize(i);
