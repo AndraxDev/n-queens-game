@@ -2,7 +2,7 @@ import React from 'react';
 import "./Cell.css"
 import PropTypes from "prop-types";
 
-function Cell({cellData, onClick, x, y}) {
+function Cell({cellData, onClick, x, y, theme}) {
     return (
         <button id={"btn-" + x + "-" + y} style={{
             "--cell-color": cellData.color,
@@ -27,7 +27,7 @@ function Cell({cellData, onClick, x, y}) {
                     cellData.hasQueen ? <div className={"cell-crown"}><img style={{
                         width: "100%",
                         height: "100%",
-                    }} src={"/crown.svg"} alt={"crown"}/></div> : null
+                    }} src={theme.isDark ? "/crown.svg" : "/crown_dark.svg"} alt={"crown"}/></div> : null
                 }
                 {
                     cellData.hasCross ? <div className={"cell-cross"}>
@@ -44,6 +44,7 @@ Cell.propTypes = {
     onClick: PropTypes.func,
     x: PropTypes.number,
     y: PropTypes.number,
+    theme: PropTypes.object
 }
 
 export default Cell;

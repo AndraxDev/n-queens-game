@@ -5,8 +5,9 @@
     justify-content: center;
     align-items: center;
     z-index: 0;
-    border-radius: 24px;
+    border-radius: 17px;
     width: 100%;
+    background-color: var(--game-field-background-color);
 }
 
 .GameField-win-screen {
@@ -143,10 +144,17 @@
     outline: none;
     padding: 16px;
     cursor: pointer;
-    border-radius: 0;
+    border-radius: 4px;
     width: 48px;
     height: 48px;
     font-weight: 500;
+}
+
+.btn-level-size:active {
+    background-color: var(--settings-level-size-active-background-color);
+    color: var(--settings-level-size-active-label-color);
+    border-radius: 16px;
+    transition: 0.3s;
 }
 
 .btn-level-size-active {
@@ -154,7 +162,6 @@
     color: var(--settings-level-size-active-label-color) !important;
     border-radius: 16px;
     transition: 0.3s;
-    font-weight: bold;
 }
 
 .level-size-btn-container {
@@ -162,9 +169,10 @@
     flex-direction: row;
     justify-content: center;
     background-color: var(--settings-level-size-container-background-color);
-    border-radius: 16px;
+    border-radius: 22px;
     flex-wrap: wrap;
     transition: 0.3s;
+    padding: 6px;
 }
 
 .link-dev {

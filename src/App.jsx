@@ -20,7 +20,7 @@ import {
 } from "./GameLogic/GameLogic.js";
 import {generateArray} from "./util.js";
 import {isMobile} from "react-device-detect";
-import {dark, getTheme, light} from "./Theme/Theme.js";
+import {amoled, dark, getTheme, light} from "./Theme/Theme.js";
 
 const levelData = JSON.parse(localStorage.getItem("gameState")) ?? loadLevel();
 
@@ -181,7 +181,6 @@ function App() {
             "--cell-note-color": theme.cellNoteColor,
             "--cell-even-opacity": theme.cellEvenOpacity,
             "--cell-odd-opacity": theme.cellOddOpacity,
-            "--settings-overlay-background-color": theme.settingsOverlayBackgroundColor,
             "--settings-level-size-label-color": theme.settingsLevelSizeLabelColor,
             "--settings-level-size-active-background-color": theme.settingsLevelSizeActiveBackgroundColor,
             "--settings-level-size-active-label-color": theme.settingsLevelSizeActiveLabelColor,
@@ -193,12 +192,13 @@ function App() {
             "--link-dev-hover-color": theme.linkDevHoverColor,
             "--root-background-color": theme.rootBackgroundColor,
             "--root-text-color": theme.rootTextColor,
+            "--game-field-background-color": theme.gameFieldBackgroundColor,
             "--window-allowed-min-height": "calc(100dvh - " + (statusBarWidth + navigationBarWidth) + "px)",
         }} className={"app-container"}>
             <BaseWindow>
                 <OverlayWindow statusBarWidth={statusBarWidth} navigationBarHeight={navigationBarWidth} theme={theme} id={"settings-dialog"} open={settingsDialogOpen} setOpen={setSettingsDialogOpen} title={"Settings"}>
                     <div className={"settings-block"}>
-                        <h2>Level size</h2>
+                        <h2>Board size</h2>
                         <div className={"level-size-btn-container"}>
                             {
                                 // Higher board size may not be suitable for mobile devices
@@ -221,13 +221,19 @@ function App() {
                             }}>Dark</button>
                             <button style={{
                                 width: "auto"
+                            }} className={"btn-level-size " + (theme.id === "amoled" ? "btn-level-size-active" : "")} onClick={() => {
+                                localStorage.setItem("theme", "amoled");
+                                setTheme(amoled)
+                            }}>Dark (amoled)</button>
+                            <button style={{
+                                width: "auto"
                             }} className={"btn-level-size " + (theme.id === "light" ? "btn-level-size-active" : "")} onClick={() => {
                                 localStorage.setItem("theme", "light");
                                 setTheme(light)
                             }}>Light</button>
                         </div>
                         <br/>
-                        <p className={"guide-text"}>Settings are saved automatically. This setting applies to your next level. Finish your current level or click "New level" to change board size.</p>
+                        <p className={"guide-text"}>Settings are saved automatically. Board size setting applies to your next level. Finish your current level or click "New level" to change board size.<br/><br/>Dark AMOLED theme reduces battery usage by using black background colors which physically disables some of pixels on your display. On regular LCD displays AMOLED theme almost takes no effect on battery usage because even black pixels are highlighted.</p>
                     </div>
                     <div className={"guide"}>
                         <span className={"guide-text"}>Queens version {version} developed by <a target={"_blank"} rel={"noreferrer"} href={"https://andrax.dev"} className={"link-dev"}>AndraxDev</a>. Inspired from popular LinkedIn puzzle.</span>

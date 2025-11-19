@@ -59,7 +59,7 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme}
                                 hasCross: gameState.field[index][cellIndex] === 1,
                                 hasError: gameState.error[index][cellIndex] === 1,
                                 boardSize: gameState.width
-                            }} key={"cell-" + (index + cellIndex)} x={index} y={cellIndex}/>))
+                            }} theme={theme} key={"cell-" + (index + cellIndex)} x={index} y={cellIndex}/>))
                     }
                 </div>))
             }
