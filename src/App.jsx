@@ -33,6 +33,11 @@ function App() {
     const [fSize, setFSize] = React.useState(getFieldSize());
     const [theme, setTheme] = React.useState(getTheme());
 
+    // Handling inset for status bar and navigation bar on mobile devices
+    const queryParams = new URLSearchParams(window.location.search);
+    const statusBarWidth = queryParams.get("sbw");
+    const navigationBarWidth = queryParams.get("nbw");
+
     useEffect(() => {
         if (gameState) {
             localStorage.setItem("gameState", JSON.stringify(gameState));
@@ -159,6 +164,7 @@ function App() {
 
     return (
         <div style={{
+            paddingTop: statusBarWidth + "px",
             "--overlay-background-color": theme.overlayBackgroundColor,
             "--btn-background-color": theme.btnBackgroundColor,
             "--btn-foreground-color": theme.btnForegroundColor,
@@ -283,6 +289,9 @@ function App() {
                     </div>
                 </div>
             </BaseWindow>
+            <div style={{
+                height: navigationBarWidth + "px",
+            }} />
         </div>
     )
 }
