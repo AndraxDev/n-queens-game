@@ -6,7 +6,7 @@ function OverlayWindow({open, setOpen, id, children, title, theme, statusBarWidt
     useEffect(() => {
         if (open) {
             document.getElementById(id + "").style.backgroundColor = theme.overlayBackgroundColor;
-            document.getElementById(id + "").style.backdropFilter = "blur(16px)";
+            document.getElementById(id + "").style.backdropFilter = "blur(32px)";
             document.getElementById(id + "").style.pointerEvents = "auto";
             document.getElementById(id + "").style.overflowY = "auto";
             document.getElementById(id + "-container").style.opacity = "1.0";

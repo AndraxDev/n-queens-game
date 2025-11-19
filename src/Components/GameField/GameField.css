@@ -13,8 +13,9 @@
 .GameField-win-screen {
     background-color: transparent;
     backdrop-filter: blur(0px);
-    position: absolute;
+    position: fixed;
     z-index: 2;
+    top: 0;
     pointer-events: none;
     transition: .8s;
 }
@@ -26,7 +27,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 24px;
 }
 
 .Game-Actions {
@@ -54,6 +54,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 
 .Game-Actions-btn {
@@ -93,6 +94,7 @@
     flex-direction: row;
     align-items: center;
     margin: 24px 0;
+    z-index: 3;
 }
 
 .Game-Settings-btn:active {

@@ -263,7 +263,7 @@ function App() {
                     }} className={"Game-Settings-btn"}><div style={{
                         width: "24px",
                         height: "24px",
-                        lineHeight: "1",
+                        lineHeight: "1"
                     }} disabled>
                         <img src={"/settings.svg"} alt={"Settings"}/>
                     </div></button>
@@ -271,7 +271,7 @@ function App() {
                 <div className={"Game-Header"}>
                     <h1>Queens</h1>
                 </div>
-                <GameField theme={theme} gameState={gameState} onCellClick={handleCellClick} gameHasWon={gameHasWon} onCloseWinScreen={() => {
+                <GameField statusBarHeight={statusBarWidth} theme={theme} gameState={gameState} onCellClick={handleCellClick} gameHasWon={gameHasWon} onCloseWinScreen={() => {
                     setGameHasWon(false);
                 }} />
                 <div className={"Game-Actions"}>

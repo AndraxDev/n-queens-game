@@ -3,7 +3,7 @@ import Cell from "./Cell.jsx";
 import "./GameField.css"
 import PropTypes from "prop-types";
 
-function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme}) {
+function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme, statusBarHeight}) {
 
     const [windowWidth, setWindowWidth] = React.useState(document.getElementById("BaseWindow")?.clientWidth ?? 0);
 
@@ -18,7 +18,7 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme}
     useEffect(() => {
         if (gameHasWon) {
             document.getElementById("GameField-win-screen").style.backgroundColor = theme.overlayBackgroundColor;
-            document.getElementById("GameField-win-screen").style.backdropFilter = "blur(10px)";
+            document.getElementById("GameField-win-screen").style.backdropFilter = "blur(32px)";
             document.getElementById("GameField-win-screen").style.pointerEvents = "all";
             document.getElementById("GameField-win-screen-container").style.opacity = "1.0";
 
@@ -64,12 +64,13 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme}
                 </div>))
             }
             <div id={"GameField-win-screen"} style={{
-                width: "calc(" + windowWidth + "px + 48px)",
-                height: "calc(" + windowWidth + "px + 48px)"
+                width: "100dvw",
+                height: "100dvh"
             }} className={"GameField-win-screen"}>
                 <div style={{
-                    width: windowWidth + "px",
+                    width: "100dvw",
                     height: windowWidth + "px",
+                    marginTop: "calc(" + statusBarHeight + "px + 80px)",
                 }} id={"GameField-win-screen-container"} className={"GameField-win-screen-container"}>
                     <h1>Level completed!</h1>
                     <button style={{
@@ -86,7 +87,8 @@ GameField.propTypes = {
     onCellClick: PropTypes.func,
     gameHasWon: PropTypes.bool,
     onCloseWinScreen: PropTypes.func,
-    theme: PropTypes.object
+    theme: PropTypes.object,
+    statusBarHeight: PropTypes.number
 }
 
 export default GameField;
