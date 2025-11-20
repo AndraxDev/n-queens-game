@@ -20,7 +20,7 @@ import {
 } from "./GameLogic/GameLogic.js";
 import {generateArray} from "./util.js";
 import {isMobile} from "react-device-detect";
-import {amoled, dark, getTheme, light, setThemeById, themes} from "./Theme/Theme.js";
+import {getTheme, setThemeById, themes} from "./Theme/Theme.js";
 
 const levelData = JSON.parse(localStorage.getItem("gameState")) ?? loadLevel();
 
@@ -265,11 +265,11 @@ function App() {
                 }} />
                 <div className={"Game-Actions"}>
                     <div className={"Game-Actions-group"}>
-                        <button className={"Game-Actions-btn"} onClick={() => {
+                        <button disabled={gameHasWon} className={"Game-Actions-btn" + (gameHasWon ? " Game-Actions-btn-disabled" : "")} onClick={() => {
                             clearBoard();
                             setGameHasWon(false);
                         }}>Clear board</button>
-                        <button className={"Game-Actions-btn"} onClick={() => {
+                        <button disabled={gameHasWon} className={"Game-Actions-btn" + (gameHasWon ? " Game-Actions-btn-disabled" : "")} onClick={() => {
                             putRandomQueenInEmptyCell();
                         }}>Hint</button>
                     </div>

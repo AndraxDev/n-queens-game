@@ -57,6 +57,11 @@
     z-index: 2;
 }
 
+.Game-Actions-btn-disabled {
+    opacity: 0.5 !important;
+    pointer-events: none;
+}
+
 .Game-Actions-btn {
     padding: 16px;
     font-size: 16px;
@@ -64,6 +69,7 @@
     background-color: var(--btn-background-color);
     border: none;
     outline: none;
+    opacity: 1;
     border-radius: 12px;
     transition: .5s;
     color: var(--btn-foreground-color);
