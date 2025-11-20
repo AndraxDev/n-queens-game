@@ -71,7 +71,7 @@
     outline: none;
     opacity: 1;
     border-radius: 12px;
-    transition: .5s;
+    transition: .4s ease-in;
     color: var(--btn-foreground-color);
 }
 
@@ -115,7 +115,7 @@
     outline: none;
     border-radius: 12px;
     background-color: var(--btn-settings-color);
-    transition: .3s;
+    transition: .4s ease-in;;
 }
 
 .guide-img {
@@ -149,7 +149,7 @@
 .btn-level-size {
     background-color: transparent;
     color: var(--settings-level-size-label-color);
-    transition: 0.3s;
+    transition: 0.3s ease-in;
     border: none;
     outline: none;
     padding: 16px;
@@ -164,14 +164,14 @@
     background-color: var(--settings-level-size-active-background-color);
     color: var(--settings-level-size-active-label-color);
     border-radius: 16px;
-    transition: 0.3s;
+    transition: 0.3s ease-in;
 }
 
 .btn-level-size-active {
     background-color: var(--settings-level-size-active-background-color) !important;
     color: var(--settings-level-size-active-label-color) !important;
     border-radius: 16px;
-    transition: 0.3s;
+    transition: 0.3s ease-in;
 }
 
 .level-size-btn-container {

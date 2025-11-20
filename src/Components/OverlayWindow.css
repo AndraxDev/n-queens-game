@@ -37,7 +37,7 @@
     outline: none;
     line-height: 1;
     border-radius: 12px;
-    transition: 0.3s;
+    transition: 0.5s ease-in;;
 }
 
 .DialogOverlay-btn-back:active {
