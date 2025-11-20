@@ -73,6 +73,7 @@
     background-color: var(--btn-active-background-color);
     cursor: pointer;
     color: var(--btn-active-foreground-color);
+    border-radius: 48px;
 }
 
 @media (min-device-width: 480px) {
@@ -99,6 +100,7 @@
 
 .Game-Settings-btn:active {
     background-color: var(--btn-settings-active-color);
+    border-radius: 48px;
 }
 
 .Game-Settings-btn {

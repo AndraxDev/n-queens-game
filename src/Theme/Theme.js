@@ -30,6 +30,7 @@ const lightColorBoardScheme = [
 
 export const dark = {
     id: "dark",
+    label: "Dark",
     isDark: true,
     cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
     cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
@@ -60,8 +61,108 @@ export const dark = {
     fieldColorScheme: darkColorBoardScheme
 };
 
+export const cg = {
+    id: "cg",
+    label: "Green",
+    isDark: true,
+    cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
+    cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
+    cellIncorrectColor: "#ff6b6b",
+    cellNoteColor: "rgba(0, 0, 0, 0.9)",
+    cellEvenOpacity: 0.8,
+    cellOddOpacity: 0.6,
+    overlayBackgroundColor: "rgba(18, 18, 18, 0.6)",
+    btnBackgroundColor: "#373c36",
+    btnForegroundColor: "#c7d8c3",
+    btnActiveBackgroundColor: "#c7d8c3",
+    btnActiveForegroundColor: "#373c36",
+    btnSettingsColor: "#373c36",
+    btnSettingsHoverColor: "#555c53",
+    btnSettingsActiveColor: "#555c53",
+    settingsLevelSizeLabelColor: "#c7d8c3",
+    settingsLevelSizeActiveBackgroundColor: "#c7d8c3",
+    settingsLevelSizeActiveLabelColor: "#000000",
+    settingsLevelSizeContainerBackgroundColor: "rgba(71,73,65,0.5)",
+    windowBackBtnBackgroundColor: "rgba(71,73,65,0.5)",
+    windowBackBtnActiveBackgroundColor: "rgba(88,90,80,0.5)",
+    windowBackBtnHoverBackgroundColor: "rgba(88,90,80,0.5)",
+    linkDevColor: "#ff4646",
+    linkDevHoverColor: "#ffaeae",
+    rootBackgroundColor: "#171917",
+    rootTextColor: "#c7d8c3",
+    gameFieldBackgroundColor: "#121212",
+    fieldColorScheme: darkColorBoardScheme
+};
+
+export const cb = {
+    id: "cb",
+    label: "Blue",
+    isDark: true,
+    cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
+    cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
+    cellIncorrectColor: "#ff6b6b",
+    cellNoteColor: "rgba(0, 0, 0, 0.9)",
+    cellEvenOpacity: 0.8,
+    cellOddOpacity: 0.6,
+    overlayBackgroundColor: "rgba(18, 18, 18, 0.6)",
+    btnBackgroundColor: "#2b333a",
+    btnForegroundColor: "#a5c2da",
+    btnActiveBackgroundColor: "#96b8d1",
+    btnActiveForegroundColor: "#29313a",
+    btnSettingsColor: "#29333c",
+    btnSettingsHoverColor: "#434d60",
+    btnSettingsActiveColor: "#465365",
+    settingsLevelSizeLabelColor: "#90a7d3",
+    settingsLevelSizeActiveBackgroundColor: "#8caad1",
+    settingsLevelSizeActiveLabelColor: "#000000",
+    settingsLevelSizeContainerBackgroundColor: "rgba(47,56,71,0.5)",
+    windowBackBtnBackgroundColor: "rgba(49,61,73,0.5)",
+    windowBackBtnActiveBackgroundColor: "rgba(57,71,87,0.5)",
+    windowBackBtnHoverBackgroundColor: "rgba(55,69,89,0.5)",
+    linkDevColor: "#ff4646",
+    linkDevHoverColor: "#ffaeae",
+    rootBackgroundColor: "#161c23",
+    rootTextColor: "#8db1da",
+    gameFieldBackgroundColor: "#121212",
+    fieldColorScheme: darkColorBoardScheme
+};
+
+export const cr = {
+    id: "cr",
+    label: "Red",
+    isDark: true,
+    cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
+    cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
+    cellIncorrectColor: "#ff6b6b",
+    cellNoteColor: "rgba(0, 0, 0, 0.9)",
+    cellEvenOpacity: 0.8,
+    cellOddOpacity: 0.6,
+    overlayBackgroundColor: "rgba(18, 18, 18, 0.6)",
+    btnBackgroundColor: "#3a2f2f",
+    btnForegroundColor: "#d6b0b0",
+    btnActiveBackgroundColor: "#d6a9a9",
+    btnActiveForegroundColor: "#3c3131",
+    btnSettingsColor: "#3e3030",
+    btnSettingsHoverColor: "#5a4a4a",
+    btnSettingsActiveColor: "#5a4747",
+    settingsLevelSizeLabelColor: "#d8a3a3",
+    settingsLevelSizeActiveBackgroundColor: "#da9e9e",
+    settingsLevelSizeActiveLabelColor: "#000000",
+    settingsLevelSizeContainerBackgroundColor: "rgba(71,52,52,0.5)",
+    windowBackBtnBackgroundColor: "rgba(74,53,53,0.5)",
+    windowBackBtnActiveBackgroundColor: "rgba(89,67,67,0.5)",
+    windowBackBtnHoverBackgroundColor: "rgba(94,68,68,0.5)",
+    linkDevColor: "#ff4646",
+    linkDevHoverColor: "#ffaeae",
+    rootBackgroundColor: "#221a1a",
+    rootTextColor: "#d59898",
+    gameFieldBackgroundColor: "#121212",
+    fieldColorScheme: darkColorBoardScheme
+};
+
 export const amoled = {
     id: "amoled",
+    label: "Dark (amoled)",
     isDark: true,
     cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
     cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
@@ -94,10 +195,11 @@ export const amoled = {
 
 export const light = {
     id: "light",
+    label: "Light",
     isDark: false,
     cellHoverBackgroundColor: "rgba(0, 0, 0, 0.2)",
     cellActiveBackgroundColor: "rgba(0, 0, 0, 0.4)",
-    cellIncorrectColor: "#ff2e2e",
+    cellIncorrectColor: "#b10000",
     cellNoteColor: "rgba(0, 0, 0, 0.6)",
     cellEvenOpacity: 0.9,
     cellOddOpacity: 0.8,
@@ -124,14 +226,19 @@ export const light = {
     fieldColorScheme: lightColorBoardScheme
 };
 
-const themes = [
-    light, dark, amoled
+export const themes = [
+    dark, amoled, light, cg, cb, cr
 ]
 
 const getThemeById = (id) => {
-    return themes.find(theme => theme.id === id) || dark;
+    return themes.find(theme => theme.id === id) || themes[0];
+}
+
+export const setThemeById = (id) => {
+    localStorage.setItem("theme", id);
+    return getThemeById(id);
 }
 
 export const getTheme = () => {
-    return getThemeById(localStorage.getItem("theme") || "dark");
+    return getThemeById(localStorage.getItem("theme") || themes[0].id);
 }

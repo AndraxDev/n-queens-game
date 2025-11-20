@@ -20,7 +20,7 @@ import {
 } from "./GameLogic/GameLogic.js";
 import {generateArray} from "./util.js";
 import {isMobile} from "react-device-detect";
-import {amoled, dark, getTheme, light} from "./Theme/Theme.js";
+import {amoled, dark, getTheme, light, setThemeById, themes} from "./Theme/Theme.js";
 
 const levelData = JSON.parse(localStorage.getItem("gameState")) ?? loadLevel();
 
@@ -213,24 +213,13 @@ function App() {
                         <br/>
                         <h2>Theme</h2>
                         <div className={"level-size-btn-container"}>
-                            <button style={{
-                                width: "auto"
-                            }} className={"btn-level-size " + (theme.id === "dark" ? "btn-level-size-active" : "")} onClick={() => {
-                                localStorage.setItem("theme", "dark");
-                                setTheme(dark)
-                            }}>Dark</button>
-                            <button style={{
-                                width: "auto"
-                            }} className={"btn-level-size " + (theme.id === "amoled" ? "btn-level-size-active" : "")} onClick={() => {
-                                localStorage.setItem("theme", "amoled");
-                                setTheme(amoled)
-                            }}>Dark (amoled)</button>
-                            <button style={{
-                                width: "auto"
-                            }} className={"btn-level-size " + (theme.id === "light" ? "btn-level-size-active" : "")} onClick={() => {
-                                localStorage.setItem("theme", "light");
-                                setTheme(light)
-                            }}>Light</button>
+                            {
+                                themes.map(t => (<button key={t.id} style={{
+                                    width: "auto"
+                                }} className={"btn-level-size " + (theme.id === t.id ? "btn-level-size-active" : "")} onClick={() => {
+                                    setTheme(setThemeById(t.id))
+                                }}>{t.label}</button>))
+                            }
                         </div>
                         <br/>
                         <p className={"guide-text"}>Settings are saved automatically. Board size setting applies to your next level. Finish your current level or click "New level" to change board size.<br/><br/>Dark AMOLED theme reduces battery usage by using black background colors which physically disables some of pixels on your display. On regular LCD displays AMOLED theme almost takes no effect on battery usage because even black pixels are highlighted.</p>

@@ -2,8 +2,8 @@
     <defs>
         <!-- Hard split at 50% (slight overlap avoids a hairline at the seam) -->
         <linearGradient id="crownTwoTone" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
-            <stop offset="0%"    stop-color="#574c2b"/>
-            <stop offset="49.8%" stop-color="#574c2b"/>
+            <stop offset="0%"    stop-color="#674c2b"/>
+            <stop offset="49.8%" stop-color="#674c2b"/>
             <stop offset="50.2%" stop-color="#807040"/>
             <stop offset="100%"  stop-color="#807040"/>
         </linearGradient>

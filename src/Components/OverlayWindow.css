@@ -42,6 +42,7 @@
 
 .DialogOverlay-btn-back:active {
     background-color: var(--window-back-btn-active-background-color);
+    border-radius: 48px;
 }
 
 @media (min-device-width: 480px) {
