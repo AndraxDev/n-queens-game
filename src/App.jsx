@@ -21,10 +21,13 @@ import {
 import {generateArray} from "./util.js";
 import {isMobile} from "react-device-detect";
 import {getTheme, setThemeById, themes} from "./Theme/Theme.js";
+import {useButtonLongPressVibration} from "./HapticFeedback/useButtonLongPressVibration.jsx";
 
 const levelData = JSON.parse(localStorage.getItem("gameState")) ?? loadLevel();
 
 function App() {
+    useButtonLongPressVibration();
+
     const [gameState, setGameState] = React.useState(levelData);
     const [field, setField] = React.useState(levelData.field);
     const [gameHasWon, setGameHasWon] = React.useState(false);
