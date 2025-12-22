@@ -35,6 +35,12 @@ function App() {
     const [settingsDialogOpen, setSettingsDialogOpen] = React.useState(false);
     const [fSize, setFSize] = React.useState(getFieldSize());
     const [theme, setTheme] = React.useState(getTheme());
+    const [experimentalInputEnabled, setExperimentalInputEnabled] = React.useState(localStorage.getItem("exp_input") === "true");
+
+    const setExperimentalInput = (enabled) => {
+        setExperimentalInputEnabled(enabled);
+        localStorage.setItem("exp_input", enabled ? "true" : "false");
+    }
 
     // Handling inset for status bar and navigation bar on mobile devices
     const queryParams = new URLSearchParams(window.location.search);
@@ -223,6 +229,20 @@ function App() {
                                     setTheme(setThemeById(t.id))
                                 }}>{t.label}</button>))
                             }
+                        </div>
+                        <br/>
+                        <h2>Experimental input (draw mode)</h2>
+                        <div className={"level-size-btn-container"}>
+                            <button style={{
+                                width: "auto"
+                            }} className={"btn-level-size " + (experimentalInputEnabled ? "btn-level-size-active" : "")} onClick={() => {
+                                setExperimentalInput(true)
+                            }}>ON</button>
+                            <button style={{
+                                width: "auto"
+                            }} className={"btn-level-size " + (!experimentalInputEnabled ? "btn-level-size-active" : "")} onClick={() => {
+                                setExperimentalInput(false)
+                            }}>OFF</button>
                         </div>
                         <br/>
                         <p className={"guide-text"}>Settings are saved automatically. Board size setting applies to your next level. Finish your current level or click "New level" to change board size.<br/><br/>Dark AMOLED theme reduces battery usage by using black background colors which physically disables some of pixels on your display. On regular LCD displays AMOLED theme almost takes no effect on battery usage because even black pixels are highlighted.</p>

@@ -2,7 +2,7 @@ import React from 'react';
 import "./Cell.css"
 import PropTypes from "prop-types";
 
-function Cell({cellData, onClick, x, y, theme}) {
+function Cell({cellData, onClick, x, y, theme, isPointerDown}) {
     return (
         <button id={"btn-" + x + "-" + y} style={{
             "--cell-color": cellData.color,
@@ -15,7 +15,23 @@ function Cell({cellData, onClick, x, y, theme}) {
             + (x === 0 && y === cellData.boardSize - 1 ? "cell-top-right-corner " : "")
             + (x === cellData.boardSize - 1 && y === 0 ? "cell-bottom-left-corner " : "")
             + (x === cellData.boardSize - 1 && y === cellData.boardSize - 1 ? "cell-bottom-right-corner " : "")
-        } onClick={() => onClick(x, y, 1)}>
+        } onPointerOver={() => {
+            if (isPointerDown && localStorage.getItem("exp_input") === "true") {
+                if (!cellData.hasCross) {
+                    onClick(x, y, 1)
+                } else {
+                    onClick(x, y, -1)
+                }
+            }
+        }} onMouseDown={() => {
+            if (localStorage.getItem("exp_input") === "true") {
+                onClick(x, y, 1)
+            }
+        }} onClick={() => {
+            if (localStorage.getItem("exp_input") !== "true") {
+                onClick(x, y, 1)
+            }
+        }}>
             <div className={
                 "cell-content " + (cellData.hasError ? "cell-content-error" : "") + " "
                 + (x === 0 && y === 0 ? "cell-top-left-corner " : "")
@@ -44,7 +60,8 @@ Cell.propTypes = {
     onClick: PropTypes.func,
     x: PropTypes.number,
     y: PropTypes.number,
-    theme: PropTypes.object
+    theme: PropTypes.object,
+    isPointerDown: PropTypes.bool
 }
 
 export default Cell;

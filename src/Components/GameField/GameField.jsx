@@ -2,8 +2,73 @@ import React, {useEffect} from 'react';
 import Cell from "./Cell.jsx";
 import "./GameField.css"
 import PropTypes from "prop-types";
+import {isMobile} from "react-device-detect";
 
 function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme, statusBarHeight}) {
+
+    const [pointerIsDown, setPointerIsDown] = React.useState(false);
+
+    // --- external store (safe with React 18 concurrent rendering) ---
+    let isDown = false;
+    const listeners = new Set();
+
+    const setDown = (v) => {
+        setPointerIsDown(v);
+        if (isDown !== v) {
+            isDown = v;
+            listeners.forEach((l) => l());
+        }
+    };
+
+    let initialized = false;
+
+    function init() {
+        if (initialized) return;
+        initialized = true;
+
+        if (isMobile) {
+            // Mobile: detect screen press via touch events
+            window.addEventListener("touchstart", () => setDown(true), {
+                capture: true,
+                passive: true,
+            });
+
+            window.addEventListener("touchend", () => setDown(false), {
+                capture: true,
+                passive: true,
+            });
+
+            window.addEventListener("touchcancel", () => setDown(false), {
+                capture: true,
+                passive: true,
+            });
+        } else {
+            // Desktop: pointer events (mouse/pen)
+            window.addEventListener("pointerdown", () => setDown(true), {
+                capture: true,
+                passive: true,
+            });
+
+            window.addEventListener("pointerup", () => setDown(false), {
+                capture: true,
+                passive: true,
+            });
+
+            window.addEventListener("pointercancel", () => setDown(false), {
+                capture: true,
+                passive: true,
+            });
+        }
+
+        window.addEventListener("blur", () => setDown(false));
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) setDown(false);
+        });
+    }
+
+    function useInitGlobalPointerDown() {
+        useEffect(init, []);
+    }
 
     const [windowWidth, setWindowWidth] = React.useState(document.getElementById("BaseWindow")?.clientWidth ?? 0);
 
@@ -14,6 +79,8 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme,
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [document.getElementById("BaseWindow")].clientWidth)
+
+    useInitGlobalPointerDown();
 
     useEffect(() => {
         if (gameHasWon) {
@@ -50,7 +117,7 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme,
                 }} key={"row-" + index}>
                     {
                         gameState.level[index].map((cell, cellIndex) => (
-                            <Cell onClick={onCellClick} cellData={{
+                            <Cell isPointerDown={pointerIsDown} onClick={onCellClick} cellData={{
                                 width: windowWidth / gameState.width,
                                 height: windowWidth / gameState.height,
                                 color: theme.fieldColorScheme[gameState.level[index][cellIndex] % theme.fieldColorScheme.length],
