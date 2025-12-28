@@ -19,18 +19,14 @@ function Cell({cellData, onClick, x, y, theme, isPointerDown}) {
             if (isPointerDown && localStorage.getItem("exp_input") === "true") {
                 if (!cellData.hasCross) {
                     onClick(x, y, 1)
+                } else if (cellData.hasQueen) {
+                    onClick(x, y, 0)
                 } else {
                     onClick(x, y, -1)
                 }
             }
-        }} onMouseDown={() => {
-            if (localStorage.getItem("exp_input") === "true") {
-                onClick(x, y, 1)
-            }
-        }} onClick={() => {
-            if (localStorage.getItem("exp_input") !== "true") {
-                onClick(x, y, 1)
-            }
+        }} onPointerDown={() => {
+            onClick(x, y, 1)
         }}>
             <div className={
                 "cell-content " + (cellData.hasError ? "cell-content-error" : "") + " "

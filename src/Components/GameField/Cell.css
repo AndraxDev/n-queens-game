@@ -12,13 +12,22 @@
 
 @media (min-device-width: 480px) {
     .cell:hover {
-        background-color: var(--cell-hover-color);
+        /*background-color: var(--cell-hover-color);*/
         cursor: crosshair;
     }
 }
 
 .cell:active {
+    /*background-color: var(--cell-active-color);*/
+
+}
+
+.cell-content:active {
+    /*background-color: green;*/
     background-color: var(--cell-active-color);
+    width: calc(var(--cell-size) - 24px);
+    height: calc(var(--cell-size) - 24px);
+    border-radius: 50%;
 }
 
 .cell::before {
