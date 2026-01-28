@@ -3,6 +3,7 @@ import Cell from "./Cell.jsx";
 import "./GameField.css"
 import PropTypes from "prop-types";
 import {isMobile} from "react-device-detect";
+import {getLocalizedString} from "../../Localization/Localization.jsx";
 
 function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme, statusBarHeight}) {
 
@@ -139,10 +140,10 @@ function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme,
                     height: windowWidth + "px",
                     marginTop: "calc(" + statusBarHeight + "px + 80px)",
                 }} id={"GameField-win-screen-container"} className={"GameField-win-screen-container"}>
-                    <h1>Level completed!</h1>
+                    <h1>{getLocalizedString("levelCompleted")}</h1>
                     <button style={{
                         width: "150px"
-                    }} onClick={onCloseWinScreen} className={"Game-Actions-btn"}>Close</button>
+                    }} onClick={onCloseWinScreen} className={"Game-Actions-btn"}>{getLocalizedString("close")}</button>
                 </div>
             </div>
         </div>

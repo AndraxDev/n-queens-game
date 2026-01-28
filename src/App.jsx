@@ -22,6 +22,7 @@ import {generateArray} from "./util.js";
 import {isMobile} from "react-device-detect";
 import {getTheme, setThemeById, themes} from "./Theme/Theme.js";
 import {useButtonLongPressVibration} from "./HapticFeedback/useButtonLongPressVibration.jsx";
+import {getLanguage, getLocalizedString, setLanguage} from "./Localization/Localization.jsx";
 
 const levelData = JSON.parse(localStorage.getItem("gameState")) ?? loadLevel();
 
@@ -205,9 +206,9 @@ function App() {
             "--window-allowed-min-height": "calc(100dvh - " + (statusBarWidth + navigationBarWidth) + "px)",
         }} className={"app-container"}>
             <BaseWindow>
-                <OverlayWindow statusBarWidth={statusBarWidth} navigationBarHeight={navigationBarWidth} theme={theme} id={"settings-dialog"} open={settingsDialogOpen} setOpen={setSettingsDialogOpen} title={"Settings"}>
+                <OverlayWindow statusBarWidth={statusBarWidth} navigationBarHeight={navigationBarWidth} theme={theme} id={"settings-dialog"} open={settingsDialogOpen} setOpen={setSettingsDialogOpen} title={getLocalizedString("settings")}>
                     <div className={"settings-block"}>
-                        <h2>Board size</h2>
+                        <h2 className={"settings-section-title"}>{getLocalizedString("boardSize")}</h2>
                         <div className={"level-size-btn-container"}>
                             {
                                 // Higher board size may not be suitable for mobile devices
@@ -220,7 +221,7 @@ function App() {
                             }
                         </div>
                         <br/>
-                        <h2>Theme</h2>
+                        <h2 className={"settings-section-title"}>{getLocalizedString("theme")}</h2>
                         <div className={"level-size-btn-container"}>
                             {
                                 themes.map(t => (<button key={t.id} style={{
@@ -231,42 +232,63 @@ function App() {
                             }
                         </div>
                         <br/>
-                        <h2>Experimental input (draw mode)</h2>
+                        <h2 className={"settings-section-title"}>{getLocalizedString("language")}</h2>
+                        <div className={"level-size-btn-container"}>
+                            {
+                                [
+                                    {
+                                        code: "en-US",
+                                        label: "English"
+                                    },
+                                    {
+                                        code: "de-DE",
+                                        label: "Deutsche"
+                                    }
+                                ].map(t => (<button key={t.code} style={{
+                                    width: "auto"
+                                }} className={"btn-level-size " + (t.code === getLanguage() ? "btn-level-size-active" : "")} onClick={() => {
+                                    setLanguage(t.code)
+                                    window.location.reload();
+                                }}>{t.label}</button>))
+                            }
+                        </div>
+                        <br/>
+                        <h2 className={"settings-section-title"}>{getLocalizedString("experimentalInput")}</h2>
                         <div className={"level-size-btn-container"}>
                             <button style={{
                                 width: "auto"
                             }} className={"btn-level-size " + (experimentalInputEnabled ? "btn-level-size-active" : "")} onClick={() => {
                                 setExperimentalInput(true)
-                            }}>ON</button>
+                            }}>{getLocalizedString("on")}</button>
                             <button style={{
                                 width: "auto"
                             }} className={"btn-level-size " + (!experimentalInputEnabled ? "btn-level-size-active" : "")} onClick={() => {
                                 setExperimentalInput(false)
-                            }}>OFF</button>
+                            }}>{getLocalizedString("off")}</button>
                         </div>
                         <br/>
-                        <p className={"guide-text"}>Settings are saved automatically. Board size setting applies to your next level. Finish your current level or click "New level" to change board size.<br/><br/>Dark AMOLED theme reduces battery usage by using black background colors which physically disables some of pixels on your display. On regular LCD displays AMOLED theme almost takes no effect on battery usage because even black pixels are highlighted.</p>
+                        <p className={"guide-text"}>{getLocalizedString("settingsSaved")}<br/><br/>{getLocalizedString("amoledNotice")}</p>
                     </div>
                     <div className={"guide"}>
                         <span className={"guide-text"}>Queens version {version} developed by <a target={"_blank"} rel={"noreferrer"} href={"https://andrax.dev"} className={"link-dev"}>AndraxDev</a>. Inspired from popular LinkedIn puzzle.</span>
                     </div>
                 </OverlayWindow>
-                <OverlayWindow statusBarWidth={statusBarWidth} navigationBarHeight={navigationBarWidth} theme={theme} id={"rules-dialog"} open={rulesDialogOpen} setOpen={setRulesDialogOpen} title={"How to play?"}>
+                <OverlayWindow statusBarWidth={statusBarWidth} navigationBarHeight={navigationBarWidth} theme={theme} id={"rules-dialog"} open={rulesDialogOpen} setOpen={setRulesDialogOpen} title={getLocalizedString("howToPlay")}>
                     <div className={"guide"}>
-                        <p className={"guide-text"}>Place queens on the board so each row, column and color region contains exactly one queen.</p>
-                        <img className={"guide-img"} src={"/scenario/correct.png"} alt={"Correct answer"}/>
+                        <p className={"guide-text"}>{getLocalizedString("rule1")}</p>
+                        <img className={"guide-img"} src={"/scenario/correct.png"} alt={getLocalizedString("rule1alt")}/>
                         <br/>
-                        <p className={"guide-text"}>You can make notes using crosses like where a queen cannot be placed. It does not affect gameplay.</p>
-                        <img className={"guide-img"} src={"/scenario/crosses.png"} alt={"Crosses"}/>
+                        <p className={"guide-text"}>{getLocalizedString("rule2")}</p>
+                        <img className={"guide-img"} src={"/scenario/crosses.png"} alt={getLocalizedString("rule2alt")}/>
                         <br/>
-                        <p className={"guide-text"}>Queens MUST NOT touch each other even diagonally.</p>
-                        <img className={"guide-img"} src={"/scenario/diagonal_touch.png"} alt={"Diagonal touch"}/>
+                        <p className={"guide-text"}>{getLocalizedString("rule3")}</p>
+                        <img className={"guide-img"} src={"/scenario/diagonal_touch.png"} alt={getLocalizedString("rule3alt")}/>
                         <br/>
-                        <p className={"guide-text"}>Each row and colum must not have multiple queens.</p>
-                        <img className={"guide-img"} src={"/scenario/row_column_duplicate.png"} alt={"Row/Column contains multiple queens"}/>
+                        <p className={"guide-text"}>{getLocalizedString("rule4")}</p>
+                        <img className={"guide-img"} src={"/scenario/row_column_duplicate.png"} alt={getLocalizedString("rule4alt")}/>
                         <br/>
-                        <p className={"guide-text"}>Each color region must not have multiple queens.</p>
-                        <img className={"guide-img"} src={"/scenario/region_duplicate.png"} alt={"Color region contains multiple queens"}/>
+                        <p className={"guide-text"}>{getLocalizedString("rule5")}</p>
+                        <img className={"guide-img"} src={"/scenario/region_duplicate.png"} alt={getLocalizedString("rule5alt")}/>
                     </div>
                 </OverlayWindow>
                 <div className={"Game-Settings-Pane-Overlay"}>
@@ -277,11 +299,11 @@ function App() {
                         height: "24px",
                         lineHeight: "1"
                     }} disabled>
-                        <img src={"/settings.svg"} alt={"Settings"}/>
+                        <img src={"/settings.svg"} alt={getLocalizedString("settings")}/>
                     </div></button>
                 </div>
                 <div className={"Game-Header"}>
-                    <h1>Queens</h1>
+                    <h1>{getLocalizedString("appName")}</h1>
                 </div>
                 <GameField statusBarHeight={statusBarWidth} theme={theme} gameState={gameState} onCellClick={handleCellClick} gameHasWon={gameHasWon} onCloseWinScreen={() => {
                     setGameHasWon(false);
@@ -291,10 +313,10 @@ function App() {
                         <button disabled={gameHasWon} className={"Game-Actions-btn" + (gameHasWon ? " Game-Actions-btn-disabled" : "")} onClick={() => {
                             clearBoard();
                             setGameHasWon(false);
-                        }}>Clear board</button>
+                        }}>{getLocalizedString("clearBoard")}</button>
                         <button disabled={gameHasWon} className={"Game-Actions-btn" + (gameHasWon ? " Game-Actions-btn-disabled" : "")} onClick={() => {
                             putRandomQueenInEmptyCell();
-                        }}>Hint</button>
+                        }}>{getLocalizedString("hint")}</button>
                     </div>
                     <div className={"Game-Actions-group"}>
                         <button className={"Game-Actions-btn"} onClick={() => {
@@ -303,10 +325,10 @@ function App() {
                             setGameState(newLevel);
                             setField(newLevel.field);
                             setGameHasWon(false);
-                        }}>New level</button>
+                        }}>{getLocalizedString("newLevel")}</button>
                         <button onClick={() => {
                             setRulesDialogOpen(true);
-                        }} className={"Game-Actions-btn"}>Rules</button>
+                        }} className={"Game-Actions-btn"}>{getLocalizedString("rules")}</button>
                     </div>
                 </div>
             </BaseWindow>

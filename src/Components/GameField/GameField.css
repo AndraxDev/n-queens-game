@@ -195,3 +195,7 @@
 .link-dev:hover {
     color: var(--link-dev-hover-color);
 }
+
+.settings-section-title {
+    text-align: center;
+}

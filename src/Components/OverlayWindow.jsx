@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import "./OverlayWindow.css"
 import PropTypes from "prop-types";
+import {getLocalizedString} from "../Localization/Localization.jsx";
 
 function OverlayWindow({open, setOpen, id, children, title, theme, statusBarWidth, navigationBarHeight}) {
     useEffect(() => {
@@ -40,7 +41,7 @@ function OverlayWindow({open, setOpen, id, children, title, theme, statusBarWidt
                             alignItems: "center",
                             justifyContent: "center",
                         }}>
-                            <img src={theme.isDark ? "/arrow_back.svg" : "/arrow_back_dark.svg"} alt={"Go back"}/>
+                            <img src={theme.isDark ? "/arrow_back.svg" : "/arrow_back_dark.svg"} alt={getLocalizedString("goBack")}/>
                         </div>
                     </button>
                     <h2>{title}</h2>

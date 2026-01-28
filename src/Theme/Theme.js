@@ -1,3 +1,5 @@
+import {getLocalizedString} from "../Localization/Localization.jsx";
+
 const darkColorBoardScheme = [
     "#407038",
     "#754c2e",
@@ -30,7 +32,7 @@ const lightColorBoardScheme = [
 
 export const dark = {
     id: "dark",
-    label: "Dark",
+    label: getLocalizedString("themeDark"),
     isDark: true,
     cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
     cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
@@ -63,7 +65,7 @@ export const dark = {
 
 export const cg = {
     id: "cg",
-    label: "Green",
+    label: getLocalizedString("themeGreen"),
     isDark: true,
     cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
     cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
@@ -96,7 +98,7 @@ export const cg = {
 
 export const cb = {
     id: "cb",
-    label: "Blue",
+    label: getLocalizedString("themeBlue"),
     isDark: true,
     cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
     cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
@@ -129,7 +131,7 @@ export const cb = {
 
 export const cr = {
     id: "cr",
-    label: "Red",
+    label: getLocalizedString("themeRed"),
     isDark: true,
     cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
     cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
@@ -162,7 +164,7 @@ export const cr = {
 
 export const amoled = {
     id: "amoled",
-    label: "Dark (amoled)",
+    label: getLocalizedString("themeDarkAmoled"),
     isDark: true,
     cellHoverBackgroundColor: "rgba(255, 255, 255, 0.2)",
     cellActiveBackgroundColor: "rgba(255, 255, 255, 0.4)",
@@ -195,7 +197,7 @@ export const amoled = {
 
 export const light = {
     id: "light",
-    label: "Light",
+    label: getLocalizedString("themeLight"),
     isDark: false,
     cellHoverBackgroundColor: "rgba(0, 0, 0, 0.2)",
     cellActiveBackgroundColor: "rgba(0, 0, 0, 0.4)",
