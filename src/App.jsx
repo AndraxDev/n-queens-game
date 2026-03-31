@@ -242,7 +242,7 @@ function App() {
                                     },
                                     {
                                         code: "de-DE",
-                                        label: "Deutsche"
+                                        label: "Deutsch"
                                     }
                                 ].map(t => (<button key={t.code} style={{
                                     width: "auto"
