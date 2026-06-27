@@ -36,6 +36,7 @@ function App() {
     const [settingsDialogOpen, setSettingsDialogOpen] = React.useState(false);
     const [fSize, setFSize] = React.useState(getFieldSize());
     const [theme, setTheme] = React.useState(getTheme());
+    const [queensRemaining, setQueensRemaining] = React.useState(getFieldSize());
     const [experimentalInputEnabled, setExperimentalInputEnabled] = React.useState(localStorage.getItem("exp_input") === "true");
 
     const setExperimentalInput = (enabled) => {
@@ -120,6 +121,7 @@ function App() {
         setGameState({...gameState});
         setField([...gameState.field]);
         setGameHasWon(false);
+        setQueensRemaining(fSize)
     }
 
     useEffect(() => {
@@ -132,6 +134,7 @@ function App() {
             }
         }
 
+        setQueensRemaining(fSize - countQueens());
         checkFullFieldForNeighboringCrowns();
         checkFieldRowsAndColumnsForMultipleCrowns();
         checkWinCondition();
@@ -159,6 +162,21 @@ function App() {
         }
     }
 
+    const countQueens = () => {
+        let count = 0;
+        let field = gameState.field;
+
+        for (let x = 0; x < field.length; x++) {
+            for (let y = 0; y < field[0].length; y++) {
+                if (field[x][y] === 2) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
     const handleCellClick = (x, y, action) => {
         let cellValue = gameState.field[x][y];
 
@@ -169,6 +187,8 @@ function App() {
         } else {
             gameState.field[x][y] += action;
         }
+
+        setQueensRemaining(fSize - countQueens());
 
         setField([...field])
         setGameState({...gameState});
@@ -294,16 +314,25 @@ function App() {
                 <div className={"Game-Settings-Pane-Overlay"}>
                     <button onClick={() => {
                         setSettingsDialogOpen(true);
-                    }} className={"Game-Settings-btn"}><div style={{
-                        width: "24px",
-                        height: "24px",
-                        lineHeight: "1"
-                    }} disabled>
-                        <img src={"/settings.svg"} alt={getLocalizedString("settings")}/>
-                    </div></button>
+                    }} className={"Game-Settings-btn"}>
+                        <div style={{
+                            width: "24px",
+                            height: "24px",
+                            lineHeight: "1"
+                        }} disabled>
+                            <img src={"/settings.svg"} alt={getLocalizedString("settings")}/>
+                        </div>
+                    </button>
                 </div>
                 <div className={"Game-Header"}>
+                    <div className={"header-dummy"}></div>
                     <h1>{getLocalizedString("appName")}</h1>
+                    <div className={"remaining-queens"}>
+                        <span style={{
+                            color: queensRemaining < 0 ? "red" : theme.rootTextColor
+                        }} className={"queens-remaining-text"}>{queensRemaining}</span>
+                        <img className={"queens-remaining-icon"} src={"/crown.svg"} alt={getLocalizedString("remainingQueens")}/>
+                    </div>
                 </div>
                 <GameField statusBarHeight={statusBarWidth} theme={theme} gameState={gameState} onCellClick={handleCellClick} gameHasWon={gameHasWon} onCloseWinScreen={() => {
                     setGameHasWon(false);

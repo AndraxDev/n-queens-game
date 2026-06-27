@@ -51,8 +51,10 @@
     position: absolute;
     height: 100px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 640px;
+    width: calc(100vw - 64px);
     align-items: center;
     z-index: 2;
 }

@@ -4,3 +4,23 @@
     min-height: var(--window-allowed-min-height);
     transition: 0.3s;
 }
+
+.remaining-queens, .header-dummy {
+    width: 72px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.queens-remaining-text {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.queens-remaining-icon {
+    width: 32px;
+    height: 32px;
+}

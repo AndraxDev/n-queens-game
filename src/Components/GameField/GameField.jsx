@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import {isMobile} from "react-device-detect";
 import {getLocalizedString} from "../../Localization/Localization.jsx";
 
-function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme, statusBarHeight}) {
+function GameField({gameState, onCellClick, gameHasWon, onCloseWinScreen, theme, statusBarHeight, setQueensRemaining}) {
 
     const [pointerIsDown, setPointerIsDown] = React.useState(false);
 

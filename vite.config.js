@@ -8,5 +8,11 @@ export default defineConfig({
         port: 3000,
         open: true,
         host: '0.0.0.0',
+        allowedHosts: [
+            'localhost',
+            'xn-2a35-s8.local',
+            'xn-2a35-s8.network.teslasoft.org',
+            'queens.andrax.dev'
+        ]
     }
 })

@@ -1,7 +1,8 @@
 {
   "name": "n-queens-game",
   "private": true,
-  "version": "1.12",
+  "version": "1.13",
+  "author": "AndraxDev",
   "type": "module",
   "scripts": {
     "dev": "vite",
