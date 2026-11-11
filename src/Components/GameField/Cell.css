@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    corner-shape: superellipse(2);
 }
 
 @media (min-device-width: 480px) {
@@ -38,6 +39,7 @@
     z-index: -1;
     pointer-events: none;
     transition: .3s;
+    corner-shape: superellipse(2);
 }
 
 .cell-even::before {
@@ -51,51 +53,51 @@
 }
 
 .cell-top-left-corner {
-    border-top-left-radius: 16px;
+    border-top-left-radius: 48px;
 }
 
 .cell-top-right-corner {
-    border-top-right-radius: 16px;
+    border-top-right-radius: 48px;
 }
 
 .cell-bottom-left-corner {
-    border-bottom-left-radius: 16px;
+    border-bottom-left-radius: 48px;
 }
 
 .cell-bottom-right-corner {
-    border-bottom-right-radius: 16px;
+    border-bottom-right-radius: 48px;
 }
 
 .cell-top-left-corner::before {
-    border-top-left-radius: 16px;
+    border-top-left-radius: 48px;
 }
 
 .cell-top-right-corner::before {
-    border-top-right-radius: 16px;
+    border-top-right-radius: 48px;
 }
 
 .cell-bottom-left-corner::before {
-    border-bottom-left-radius: 16px;
+    border-bottom-left-radius: 48px;
 }
 
 .cell-bottom-right-corner::before {
-    border-bottom-right-radius: 16px;
+    border-bottom-right-radius: 48px;
 }
 
 .cell-top-left-corner::after {
-    border-top-left-radius: 15px !important;
+    border-top-left-radius: 47px !important;
 }
 
 .cell-top-right-corner::after {
-    border-top-right-radius: 15px !important;
+    border-top-right-radius: 47px !important;
 }
 
 .cell-bottom-left-corner::after {
-    border-bottom-left-radius: 15px !important;
+    border-bottom-left-radius: 47px !important;
 }
 
 .cell-bottom-right-corner::after {
-    border-bottom-right-radius: 15px !important;
+    border-bottom-right-radius: 47px !important;
 }
 
 .cell-content {
@@ -116,9 +118,11 @@
     height: 0;
     transition: .3s;
     border: 6px solid transparent;
+    corner-shape: superellipse(2);
 }
 
 .cell-content-error::after {
+    corner-shape: superellipse(2);
     content: "";
     position: absolute;
     width: calc(var(--cell-size) - 14px);

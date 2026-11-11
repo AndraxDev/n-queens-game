@@ -6,6 +6,7 @@
     align-items: center;
     z-index: 0;
     border-radius: 17px;
+    corner-shape: superellipse(2);
     width: 100%;
     background-color: var(--game-field-background-color);
 }
@@ -72,7 +73,8 @@
     border: none;
     outline: none;
     opacity: 1;
-    border-radius: 12px;
+    border-radius: 999px;
+    corner-shape: superellipse(2);
     transition: .4s ease-in;
     color: var(--btn-foreground-color);
 }
@@ -81,7 +83,7 @@
     background-color: var(--btn-active-background-color);
     cursor: pointer;
     color: var(--btn-active-foreground-color);
-    border-radius: 48px;
+    corner-shape: superellipse(1.1);
 }
 
 @media (min-device-width: 480px) {
@@ -108,21 +110,24 @@
 
 .Game-Settings-btn:active {
     background-color: var(--btn-settings-active-color);
-    border-radius: 48px;
+    corner-shape: superellipse(1.1);
+    transition: .2s ease-in;
 }
 
 .Game-Settings-btn {
     padding: 16px;
     border: none;
     outline: none;
-    border-radius: 12px;
+    border-radius: 50%;
+    corner-shape: superellipse(2);
     background-color: var(--btn-settings-color);
-    transition: .4s ease-in;;
+    transition: .2s ease-in;
 }
 
 .guide-img {
     width: 100%;
-    border-radius: 24px;
+    border-radius: 48px;
+    corner-shape: superellipse(2);
 }
 
 .guide-text {
@@ -143,7 +148,8 @@
     flex-direction: column;
     align-items: center;
     width: calc(100% - 80px);
-    border-radius: 12px;
+    border-radius: 48px;
+    corner-shape: superellipse(2);
     margin: 16px;
     padding: 24px;
 }
@@ -156,7 +162,8 @@
     outline: none;
     padding: 16px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 100px;
+    corner-shape: superellipse(2);
     width: 48px;
     height: 48px;
     font-weight: 500;
@@ -165,15 +172,15 @@
 .btn-level-size:active {
     background-color: var(--settings-level-size-active-background-color);
     color: var(--settings-level-size-active-label-color);
-    border-radius: 16px;
-    transition: 0.3s ease-in;
+    corner-shape: superellipse(1.1);
+    transition: 0.2s ease-in;
 }
 
 .btn-level-size-active {
     background-color: var(--settings-level-size-active-background-color) !important;
     color: var(--settings-level-size-active-label-color) !important;
-    border-radius: 16px;
-    transition: 0.3s ease-in;
+    corner-shape: superellipse(2);
+    transition: 0.2s ease-in;
 }
 
 .level-size-btn-container {
@@ -181,7 +188,8 @@
     flex-direction: row;
     justify-content: center;
     background-color: var(--settings-level-size-container-background-color);
-    border-radius: 22px;
+    corner-shape: superellipse(2);
+    border-radius: 56px;
     flex-wrap: wrap;
     transition: 0.3s;
     padding: 6px;
