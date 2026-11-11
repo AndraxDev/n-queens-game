@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     z-index: 0;
-    border-radius: 17px;
+    border-radius: 49px;
     corner-shape: superellipse(2);
     width: 100%;
     background-color: var(--game-field-background-color);
